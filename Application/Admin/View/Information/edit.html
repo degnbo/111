@@ -1,0 +1,150 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<script src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">资讯列表</a>
+            </li>
+            <li>
+                <strong>修改资讯</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Information/lis',array('p'=>I('get.p')))}";
+                            location.reload();
+                            location.href=url;
+                        }
+                        $(function(){
+                        })
+                    </script>
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">资讯列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Information/edit',array('id'=>$vo['id']))}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>资讯logo展示</label>
+                            <img src="__PUBLIC__/Uploads/{$vo.sm_logo}" height="40px" width="80px"/>
+                            <input type="file" name="myfile" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>资讯标题</label>
+                            <input type="text" name="title"
+                                   datatype="*1-30" value="{$vo.title}"
+                                   nullmsg="请输入资讯标题" errormsg="长度不能超过30"
+                                   placeholder="请输入资讯标题" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>资讯描述</label>
+                            <input type="text" name="des"
+                                   datatype="*1-50" value="{$vo.des}"
+                                   nullmsg="请输入资讯描述" errormsg="长度不能超过50"
+                                   placeholder="请输入资讯描述" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label>发布时间</label>
+                            <input type="text" name="ptime"
+                                   datatype="*"
+                                   nullmsg="请输入发布时间" errormsg="请输入时间"
+                                   placeholder="请输入发布时间" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>资讯排序数字越小越靠前</label>
+                            <input type="text" name="sort_num"
+                                   datatype="n"  value="{$vo.sort_num}"
+                                   nullmsg="请输资讯数字" errormsg="请输入数字"
+                                   placeholder="请输入数字" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>产品类型</label>
+                            <select name="type_id" datatype="*" nullmsg="请选择商品类型" >
+                                <option value="">请选择商品类型</option>
+                                <foreach name="tlist" item="val"  key="k">
+                                    <if condition="$k egt 5">
+                                  <option value="{$val.id}" <if condition="$vo['type_id'] eq $val['id']">selected</if>>{$val.typename}</option>
+                                    </if>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>栏目类型</label>
+                            <select name="cate_id" datatype="*" nullmsg="请选择栏目类型">
+                                <option value="">请选择栏目类型</option>
+                                <foreach name="clist" item="val">
+                                    <option value="{$val.id}" <if condition="$vo['cate_id'] eq $val['id']">selected</if>>
+                                    {$val.level|str_repeat="&nbsp;&nbsp;",###}{$val.cate_name}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>是否显示</label><br>
+                            <input type="radio" name="is_show" value="1" <if condition='$vo.is_show eq 1'>checked</if>
+                                   datatype="*" nullmsg="请选择">是
+                            <input type="radio" name="is_show"   value="0"  <if condition='$vo.is_show eq 0'>checked</if>>否
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>商品描述</label><br>
+                            <textarea name="content" cols="50" rows="5" style="width:1000px;height:500px">{$vo.content|html_entity_decode}</textarea>
+                             <!--引入kindeditor编辑器-->
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+                            <script type="text/javascript">
+                                var editor;
+                                KindEditor.ready(function(K) {
+                                    editor = K.create('textarea[name="content"]', {
+                                        allowFileManager : true,
+                                        afterBlur : function(){
+                                            //编辑器失去焦点时直接同步，可以取到值
+                                            this.sync();
+                                        }
+                                    });
+                                });
+                            </script>
+                            <!--引入kindeditor编辑器-->
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>

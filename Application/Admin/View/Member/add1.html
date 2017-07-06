@@ -1,0 +1,218 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<style>
+    .demo{width:360px; margin:60px auto 10px auto}
+
+    button,
+    a.btn {
+        background-color: #189094;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 3px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        text-shadow: none;
+    }
+    button:focus {
+        outline: 0;
+    }
+
+    .file-btn {
+        position: relative;
+    }
+    .file-btn input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    .actions {
+        padding: 5px 0;
+    }
+    .actions button {
+        margin-right: 5px;
+    }
+    .crop{display:none}
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">会员管理</a>
+            </li>
+            <li>
+                <strong>添加会员</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>表单验证</h5>
+                </div>
+                <script>
+                    function fnClickAddRow() {
+                        var url="{:U('Role/add')}";
+                        location.reload();
+                        location.href=url;
+                    }
+                    $(function(){
+                    })
+                </script>
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">会员列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Member/add1')}" method="post">
+                        <div class="col-md-12" style="position: relative;top:50px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">文本框：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">说明文字</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>头像上传</label>
+                                <button class="file-btn">
+                                    <span>上传</span>
+                                    <input type="file" id="upload" value="选择图片文件" />
+                                </button>
+                                <div class="crop">
+                                    <div id="upload-demo"></div>
+                                    <button class="upload-result">裁剪</button>
+                                </div>
+                                <div id="result"></div>
+                                <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                            </div>
+                            <script>
+                                $(function(){
+                                    var $uploadCrop;
+
+                                    function readFile(input) {
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function (e) {
+                                                $uploadCrop.croppie('bind', {
+                                                    url: e.target.result
+                                                });
+                                                $('.upload-demo').addClass('ready');
+                                                // $('#blah').attr('src', e.target.result);
+                                            }
+
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                        else {
+                                            alert("Sorry - you're browser doesn't support the FileReader API");
+                                        }
+                                    }
+
+                                    $uploadCrop = $('#upload-demo').croppie({
+                                        viewport: {
+                                            width: 200,
+                                            height: 200,
+                                            type: 'square'
+                                            //circle
+                                        },
+                                        boundary: {
+                                            width: 300,
+                                            height: 300
+                                        }
+                                    });
+
+                                    $('#upload').on('change', function () {
+                                        $(".crop").show();
+                                        readFile(this);
+                                        var url="{:U('Test/ajax_uploads')}";
+                                        var file=$("#upload-demo").find(".cr-boundary").find('img').attr('src');
+                                        //alert(file);return false;
+                                        $.post(url,{file:file},function(e){});
+                                    });
+                                    $('.upload-result').on('click', function (ev) {
+                                        $uploadCrop.croppie('result', 'canvas').then(function (resp) {
+                                            popupResult({
+                                                src: resp
+                                            });
+                                        });
+                                    });
+
+                                    function popupResult(result) {
+                                        var html;
+                                        if (result.html) {
+                                            html = result.html;
+                                        }
+                                        if (result.src) {
+                                            html = '<img src="' + result.src + '" />';
+                                        }
+                                        $("#result").html(html);
+                                    }
+                                });
+                            </script>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">密码框：</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">下拉列表：</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name=""></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">文件域：</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">单选框：</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">选项1</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios">选项2</label>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+        <script>
+            $("#form").Validform({
+                tiptype:function(msg,o,cssctl) {
+                    if (!o.obj.is("form")) {
+                        var objtip = o.obj.next('div.error');
+                        cssctl(objtip, o.type);
+                        objtip.text(msg);
+                    }
+                }
+            })
+        </script>
+<include file="Public/footer"/>
+<script src="__PUBLIC__/cj/croppie.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/cj/croppie.css">

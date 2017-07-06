@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+
+    <title>界拓自由潜水</title>
+    <meta name="keywords" content="界拓自由潜水">
+    <meta name="description" content="界拓自由潜水">
+    <link href="__PUBLIC__/Admin/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/Admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="__PUBLIC__/Admin/css/animate.css" rel="stylesheet">
+    <link href="__PUBLIC__/Admin/css/style.css?v=2.2.0" rel="stylesheet">
+    <!-- 表单插件 -->
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Admin/css/Validform1.css" />
+    <!-- Data Tables -->
+    <link href="__PUBLIC__/Admin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <script src="__PUBLIC__/Admin/js/jquery-2.1.1.min.js"></script>
+    <style>
+        .ede{
+            width:20px;height:20px;
+            background:red;
+        }
+        .num{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:25px;height:5px;margin:12px;
+        }
+        .current{
+            padding:5px 8px;background:lightseagreen;
+            width:25px;height:5px;margin:8px;
+        }
+        .prev,.next{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:20px;height:5px;margin:8px;
+        }
+        .first,.end{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:20px;height:5px;margin:8px;
+        }
+        .jz{
+            text-align: center;
+        }
+        .nav.nav-second-level{
+            display:none;
+        }
+    </style>
+
+    <script>
+        $(function(){
+            $('.nav-label').click(function(){
+                $(this).parent().next().stop().slideToggle();
+
+            })
+
+        })
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="page-wrapper" class="gray-bg dashbard-1">

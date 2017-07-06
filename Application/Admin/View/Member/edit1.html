@@ -1,0 +1,239 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/jcrop/getjcrop.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">会员管理</a>
+            </li>
+            <li>
+                <strong>修改会员</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <script>
+                    function fnClickAddRow() {
+                        var url="{:U('Member/lis',array('p'=>I('get.p')))}";
+                        location.reload();
+                        location.href=url;
+                    }
+                    $(function(){
+                    })
+                </script>
+                <div class="ibox-title">
+                    <h5>表单验证</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">会员列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Member/edit1',array('id'=>$vo['id'],'p'=>I('get.p')))}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>会员头像</label>
+                            <input type="text" style="width: 200px;" name="logo" id="logo" value="{$vo.logo}"/>
+                            <button type="button" class="btn btn-success" id="btnUpload">上传</button>
+                            <input type="file" name="myfile" style="display:none" id="myfile"/>
+                            <!--<span  class="btn btn-primary" ><a href="javascript:;" onclick="GetJcrop('jcrop','logo');return false;" style="color:#fff">裁剪</a></span>
+                            <input type="hidden" name="thumb_logo" value="{$vo.thumb_logo}" id="slt"/>
+                            <div><img src="{$vo.thumb_logo}" id="slturl"/></div>-->
+                        </div>
+                        <script>
+                            $(function () {
+                                $('#btnUpload').click(function(){
+                                    $('#myfile').click();
+                                })
+                                $("#myfile").wrap("<form id='myupload' style='display:none' target='ajax_iframe' action=\"{:U('Member/ajax_uploads\')}\" method='post' enctype='multipart/form-data'></form>");
+                                $("#myfile").change(function(){ //选择文件
+                                    //alert(1);return false;
+                                    $("#logo").val('');
+                                    $("#myupload").submit();
+                                });
+
+                            });
+                        </script>
+                        <iframe name="ajax_iframe" style="display:none"></iframe>
+                        <!--<div class="form-group">
+                            <label>图片宽度</label>
+                            <input type="text" name="width"  <if condition="$vo.width ">value={$vo.width}</if>
+                                   placeholder="请输入图片宽度" class="form-control">
+                            <label>图片高度</label>
+                            <input type="text" name="height"  <if condition="$vo.height ">value={$vo.height}</if>
+                                   placeholder="请输入图片高度" class="form-control">
+                        </div>-->
+                        <div class="form-group">
+                            <label>性别</label><br>
+                            <input type="radio" name="sex"  value="1" <eq name="vo.sex" value="1">checked</eq> >男
+                            <input type="radio" name="sex" datatype="*" nullmsg="请选择" value="2" <eq name="vo.sex" value="2">checked</eq> >女
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <input type="text" placeholder="请输入姓名" datatype="*1-30"
+                                   name="name" class="form-control" value="{$vo.name}"
+                                   nullmsg="请输入姓名" errormsg="格式错误" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>出生日期</label>
+                            <input type="text" name="birth" value="{$vo.birth}"
+                                   datatype="*" onclick="laydate({format: 'YYYY-MM-DD'})"
+                                   nullmsg="请输入出生日期" errormsg="请输入出生日期"
+                                   placeholder="请输入出生日期" class="laydate-icon">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>联系方式</label>
+                            <input type="text" placeholder="请输入联系方式" datatype="*1-50"
+                                   name="lianxi" class="form-control" value="{$vo.lianxi}"
+                                   nullmsg="请输入联系方式" errormsg="字数过多" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>联系地址</label>
+                            <input type="text" placeholder="请输入详细地址"
+                                   name="xxdz" class="form-control" value="{$vo.xxdz}"
+                                   nullmsg="请输入详细地址" errormsg="格式错误" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>签名</label>
+                            <input type="text" placeholder="请输入签名"
+                                   name="person_sign" class="form-control" value="{$vo.person_sign}"
+                                   nullmsg="请输入签名" errormsg="内容过长" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>形象照片</label><br>
+                            <volist name="urls" id="va" key='k' empty="暂无图片">
+							    <span class="tj">
+                                <img src="{$va}" width="100px" height="80px" style="margin-right: 12px"/>
+                                <span class="edit" aid="{$vo.id}" tp="{$va}" style="cursor: pointer">修改</span>
+                                <input type="file" name="myfile2" style="display:none" />
+                                &nbsp;<span class="del" aid="{$vo.id}" tp="{$va}" style="cursor: pointer">删除</span>
+								</span>
+                                <eq name="mod" value="1"><hr></eq>
+                            </volist>
+                        </div>
+                        <div class="form-group">
+                            <label id="tjtp" style="width:80px;height:30px;background:#1AB394;color:white;line-height:30px;text-align:center">添加图片</label>
+                        </div>
+                        <script>
+                            $(function(){
+                                $("#tjtp").click(function(){
+                                    //alert('s');
+                                    $("#ply").click();
+                                });
+                                $("#ply").change(function(){
+                                    $("#form1").submit();
+                                });
+                                $(".edit").click(function(){
+                                    //alert('s');
+                                    $(this).next("input").click();
+                                });
+                                $(".del").click(function(){
+                                    if(confirm('您确定要删除该图片')){
+                                        var wo=$(this);
+                                        var tp=$(this).attr('tp');
+                                        var id=$(this).attr('aid');
+                                        //alert(id);
+                                        $.post("{:U('Member/ajax_del')}",{id:id,tp:tp},function(e){
+                                            if(e==1){
+                                                alert('删除成功');
+                                                wo.parent('.tj').remove();
+                                            }else{
+                                                alert('删除失败');
+                                            }
+                                        },'html');
+                                    }
+                                });
+
+                                $(".edit").click(function(){
+                                    var wo=$(this);
+                                    var sc=$(this).next('input');
+                                    var tp=$(this).attr('tp');
+                                    var id=$(this).attr('aid');
+                                    var html="<form style='display:none' id='upload_file' action=\"{:U('Member/ajax_edit',array('id'=>$vo['id']))}\" method='post' enctype='multipart/form-data'>" +
+                                            "<input type='hidden' name='tp'  value='"+tp+"'/>" +
+                                            "<input type='hidden' name='id' value='"+id+"'/></form>";
+                                    $("body").on("change",sc,function(){ //选择文件
+                                        wo.next('input').wrap(html);
+                                        var url=wo.next().attr('action');
+                                        wo.next().submit();
+                                    });
+                                });
+
+
+                            })
+                        </script>
+                        <!--<div class="form-group">
+                            <label>图集每一张图片对应的名字</label>
+                            <textarea  name="pic_name" rows="5" cols="50"
+                                       nullmsg="请输入图片名称" placeholder="请输入每一张图片的名称，有就填写，没有就不填"
+                                       class="form-control">{$vo.pic_name}</textarea>
+                            <font color="red">多个|隔开</font>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>图集每一张图片对应的链接</label>
+                            <textarea  name="url_name" rows="5" cols="50"
+                                       nullmsg="请输入图片链接" placeholder="请输入每一张图片的链接，有就填写，没有就不填"
+                                       class="form-control">{$vo.url_name}</textarea>
+                            <font color="red">多个|隔开</font>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>-->
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                    <form id="form1" action="{:U('Member/add_pic',array('id'=>$vo['id']))}" method="post" enctype="multipart/form-data">
+                        <input type="file" name="myfile1" style="display:none" id="ply" />
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<script>
+    $("#form").Validform({
+        tiptype:function(msg,o,cssctl) {
+            if (!o.obj.is("form")) {
+                var objtip = o.obj.siblings('div.error');
+                cssctl(objtip, o.type);
+                objtip.text(msg);
+            }
+        },
+        datatype:{
+            'kong':function(gets,obj,curform,regxp){
+                //var max=16 ;var min=6;
+                if(obj.val()==''){
+                    return true;
+                }else{
+                    if(obj.val().length>=6 && obj.val().length<=16){
+                        return true;
+                    }else{
+                        return '请输入6-16位的字符或数字';
+                    }
+                }
+            },
+            "need1":function(gets,obj,curform,regxp){
+                var need=1,
+                        numselected=curform.find("input[name='"+obj.attr("name")+"']:checked").length;
+                return  numselected >= need ? true : "请至少选择"+need+"项！";
+            }
+        }
+    })
+</script>
+<include file="Public/footer"/>

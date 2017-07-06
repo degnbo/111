@@ -1,0 +1,97 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<script src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Diver/lis',array('p'=>I('get.p')))}";
+                            location.reload();
+                            location.href=url;
+                        }
+                        $(function(){
+                        })
+                    </script>
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">潜水设备列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Diver/edit',array('id'=>$vo['id']))}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>潜水装备logo展示</label>
+                            <img src="{$vo.logo}" height="40px" width="80px"/>
+                            <input type="file" name="myfile" datatype="*" nullmsg="请选择"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>潜水装备名称</label>
+                            <input type="text" name="goods_name"
+                                   datatype="*1-30" value="{$vo.goods_name}"
+                                   nullmsg="请输入资讯标题" errormsg="长度不能超过30"
+                                   placeholder="请输入资讯标题" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>价格</label>
+                            <input type="text" name="goods_price"
+                                   datatype="*" value="{$vo.goods_price}"
+                                   nullmsg="请输入设备价格" errormsg="内容不能不多或过少"
+                                   placeholder="请输入设备价格" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>设备连接</label>
+                            <input type="text" name="link_url"
+                                   datatype="*" value="{$vo.link_url}"
+                                   nullmsg="请输入设备连接"
+                                   placeholder="请输入设备连接" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>发布时间</label>
+                            <input type="text" name="ptime" <if condition="$vo.ptime neq ''">value="{:date('Y-m-d',$vo['ptime'])}"</if>
+                                   datatype="*" onclick="laydate()" class="laydate-icon"
+                                   nullmsg="请输入发布时间" errormsg="请输入时间"
+                                   placeholder="请输入发布时间" >
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>是否推荐</label><br>
+                            <input type="radio" name="is_rec" value="1"
+                            <if condition='$vo.is_rec eq 1'>checked</if>
+                                   datatype="*" nullmsg="请选择" />是
+                            <input type="radio" name="is_rec"   value="2"
+                            <if condition='$vo.is_rec eq 2'>checked</if> />否
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>

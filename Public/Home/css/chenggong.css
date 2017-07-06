@@ -1,0 +1,30 @@
+.suces{width: 100%;margin:0 auto;max-width: 1100px;height: auto;min-height: 300px;margin-top: 45px;margin-bottom:65px;border: 1px solid #00abe3;}
+.suces_cen{text-align:center;height: auto;margin:0 auto;float: none;}
+.suces_top img, .suces_top span{float: left;}
+.suces_top span{font-size: 24px;color: #e6590c;line-height: 120px;margin-left: 50px;}
+.suces_top img{margin-top: 20px;}
+.suces_top{height:120px;padding-left: 20%;border-bottom: 1px dashed #a3a3a3 ;}
+.suces_p{font-size: 18px;color: #000;text-align: center;line-height: 60px;}
+.suces_p a{color: #2ea7e0;}
+.suces_denglu{width: 30%;height:55px;display: block;margin:0 auto;text-align: center;line-height: 55px;font-size: 24px;background: #249dd6;color: #fff;border-radius: 5px;}
+.suces_fanhui{color: #999;font-size: 18px;margin:0 auto;line-height: 40px;}
+@media only screen and (max-width:900px ) {
+	.suces_top{padding-left: 10%;}
+	.suces_denglu{font-size: 20px;}
+}
+
+@media only screen and (min-width: 320px) and (max-width:640px) {
+	.suces{width: 95%;margin:0 auto;margin-top: 20px;}
+	.suces_top img{width: 15%;margin-top:8%;}
+	.suces_top span{margin-left: 5%;font-size: 20px;}
+	.suces_p{font-size: 14px;}
+	.suces_denglu{font-size: 18px;}
+	.suces_fanhui{font-size: 14px;}
+}
+@media only screen and (min-width: 320px) and (max-width: 380px) {
+	.suces_denglu{font-size: 14px;height: 30px;line-height: 30px;}
+	.suces_p{line-height: 30px;}
+	.suces_top span{display: block;width: 100%;text-align: center;line-height: 30px;}
+	.suces_top{padding-left: 0%;text-align: center;}
+	.suces_top img{float: none !important;margin-bottom: 5%;}
+}

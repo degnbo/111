@@ -1,0 +1,260 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<script src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{:U('Goods/lis')}">商品列表</a>
+            </li>
+            <li>
+                <strong>修改商品</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Goods/lis',array('p'=>I('get.p')))}";
+                            location.reload();
+                            location.href=url;
+                        }
+                        $(function(){
+                        })
+                    </script>
+                    <div class="">
+                         <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">栏目列表</a>                    
+                   </div>
+                    <form role="form" id="form" action="{:U('Goods/edit',array('id'=>I('get.id'),'p'=>I('get.p')))}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>班级原logo展示</label>
+                            <img src="__PUBLIC__/Uploads/{$vo.sm_logo}" height="40px" width="80px"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>logo头像</label>
+                            <input type="file" name="myfile" nullmsg="请选择"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>报名班级名称</label>
+                            <input type="text" name="goods_name"
+                                   datatype="*1-20"  value="{$vo.goods_name}"
+                                   nullmsg="请输入报名班级名称" errormsg="长度不能超过30"
+                                   placeholder="请输入报名班级名称" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>报名原价格</label>
+                            <input type="text" name="old_price"
+                                   datatype="*"   value="{$vo.old_price}"
+                                   nullmsg="请输入报名原价格" errormsg="请输入数字"
+                                   placeholder="请输入报名原价格" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>报名现价格</label>
+                            <input type="text" name="now_price"
+                                   datatype="*"  value="{$vo.now_price}"
+                                   nullmsg="请输入报名现价格" errormsg="请输入数字"
+                                   placeholder="请输入报名现价格" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                         <div class="form-group">
+                        <label>报名开始时间</label>
+                            <input type="text"  class="laydate-icon" value="<if condition='$vo.start_time neq 0'>
+                            {$vo.start_time|date='Y-m-d H:i:s',###}</if>"
+                                   name="start_time" id="start_time"
+                                   nullmsg="请输入时间"  errormsg='填写日期格式'
+                                    />
+                        <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>报名结束时间</label>
+                            <input type="text"  class="laydate-icon"
+                                   onclick="laydate({istime:true,format: 'YYYY-MM-DD hh:mm:ss'})"  name="end_time"
+                                   value="<if condition='$vo.end_time neq 0'>
+                            {$vo.end_time|date='Y-m-d H:i:s',###}</if>"
+                                   nullmsg="请输入时间"  errormsg='填写日期格式'
+                                    />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+						<script>
+							;!function(){
+							//laydate.skin('molv');
+							laydate({
+							   elem: '#start_time',
+							   format: 'YYYY-MM-DD hh:mm:ss',
+							   istime:true,
+							   choose: function(datas){ //选择日期完毕的回调
+                                  //alert('得到：'+datas);
+                               }
+							})
+						}();
+						</script>
+                        <div class="form-group">
+                            <label>商品排序数字越小越靠前</label>
+                            <input type="text" name="sort_num"
+                                   datatype="n"  value="{$vo.sort_num}"
+                                   nullmsg="请输商品现价格" errormsg="请输入数字"
+                                   placeholder="请输入数字" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>产品类型</label>
+                            <select name="type_id" datatype="*" nullmsg="请选择商品类型" >
+                                <option value="">请选择商品类型</option>
+                                <foreach name="tlist" item="vv">
+                                    <option value="{$vv.id}" <if condition="$vo.type_id eq $vv['id']">selected</if>>{$vv.typename}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>栏目类型</label>
+                            <select name="cate_id" datatype="*" nullmsg="请选择子栏目类型">                               
+                                <foreach name="clist" item="val">
+                                    <option <if condition="$val['pid'] eq 0">value=''<else/>value={$val.id}</if> <if condition="$vo.cate_id eq $val['id']">selected</if> >
+                                    {$val.level|str_repeat="&nbsp;&nbsp;",###}{$val.cate_name}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>是否上架</label><br>
+                            <input type="radio" name="is_on_sale" value="1" datatype="*" nullmsg="请选择" <if condition='$vo.is_on_sale eq 1'>checked</if> >是
+                            <input type="radio" name="is_on_sale"   value="0" <if condition='$vo.is_on_sale eq 0'>checked</if>>否
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>班级地点</label><br>
+                            <select name="dd" datatype="*"  nullmsg="请选择">
+                                <option value="">选择报考班级地点</option>
+                                <foreach name="plist" item="vv">
+                                    <option value="{$vv.Pname}" <if condition="$vo.dd eq $vv['Pname']">selected</if>>{$vv.Pname}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>商品描述</label><br>
+                            <textarea name="goods_desc" cols="50" rows="5" style="width:1000px;height:500px">{$vo.goods_desc|html_entity_decode}</textarea>
+                            <!--引入kindeditor编辑器-->
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+                            <script type="text/javascript">
+                                var editor;
+                                KindEditor.ready(function(K) {
+                                    editor = K.create('textarea[name="goods_desc"]', {
+                                        allowFileManager : true,
+                                        afterBlur : function(){
+                                            //编辑器失去焦点时直接同步，可以取到值
+                                            this.sync();
+                                        }
+                                    });
+                                });
+                            </script>
+                            <!--引入kindeditor编辑器-->
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+						 <div class="form-group" id="liebiao">
+                            <label>图片集列表</label><br>
+                            <volist name="urls" id="va" key='k' empty="暂无图片">
+							    <span class="tj">
+                                <img src="{$va}" width="100px" height="80px" style="margin-right: 12px"/>
+                                <span class="edit" aid="{$vo.id}" tp="{$va}">修改</span>
+                                    <input type="file" name="myfile2" style="display:none" />
+                                    &nbsp;<span class="del" aid="{$vo.id}" tp="{$va}">删除</span>
+								</span>
+                            </volist>
+                        </div>
+						<div class="form-group">
+                            <label id="tjtp" style="width:80px;height:30px;background:#1AB394;color:white;line-height:30px;text-align:center">添加图片</label>
+                        </div>
+						<script>
+						$(function(){
+						    $("#tjtp").click(function(){
+							//alert('s');
+							     $("#ply").click();						     
+							});
+                            $(".edit").click(function(){
+                                //alert('s');
+                                $(this).next("input").click();
+                            });
+							$("#ply").change(function(){
+							    $("#form1").submit();
+							})
+							$(".del").click(function(){
+							//alert('123');
+							     var wo=$(this);
+							     var tp=$(this).attr('tp');								 
+								 var id=$(this).attr('aid');
+								 //alert(id);
+							     $.post("{:U('Shop/ajax_del')}",{id:id,tp:tp},function(e){
+								        if(e==1){
+										   alert('删除成功');
+										   wo.parent('.tj').remove();
+										}else{
+										   alert('删除失败');
+										}								     			 
+								 },'html');
+							})
+                            $(".edit").click(function(){
+                                //alert('123');
+                                var wo=$(this);
+                                var sc=$(this).next('input');
+                                var tp=$(this).attr('tp');
+                                var id=$(this).attr('aid');
+                                //alert(id);
+                                var html="<form id='upload_file' action=\"{:U('Goods/ajax_edit',array('id'=>$vo['id']))}\" method='post' enctype='multipart/form-data'>" +
+                                        "<input type='hidden' name='tp'  value='"+tp+"'/>" +
+                                "<input type='hidden' name='id' value='"+id+"'/></form>";
+                                $("body").on("change",sc,function(){ //选择文件
+                                    wo.next('input').wrap(html);
+                                    var url=wo.next().attr('action');
+                                    //alert(url);
+                                    wo.next().submit();
+                                });
+                            })
+
+                        })
+					    </script>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>修改</strong></button>
+                          <a style='margin-left:30px;'
+                             href="{:U('Goods/xuanzuo',array('id'=>I('get.id'),'p'=>I('get.p')))}" class="btn btn-sm btn-primary m-t-n-xs" >
+                              <strong>下一步</strong>
+                          </a>
+                        </div>
+                    </form>
+					<form id="form1" action="{:U('Goods/add_pic',array('id'=>$vo['id']))}" method="post" enctype="multipart/form-data">
+					<input type="file" name="myfile1" style="display:none" id="ply" />
+					</form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>

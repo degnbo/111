@@ -1,0 +1,90 @@
+<include file="Public/header"/>
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>栏目管理</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">栏目管理</a>
+            </li>
+            <li>
+                <strong>栏目列表修改</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Category/lis')}";
+                            location.reload();
+                            location.href=url;
+                        }
+                        $(function(){
+                        })
+                    </script>
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">栏目列表</a>
+                    </div>
+                    <form role="form" id="form" method="post">
+                        <div class="form-group">
+                            <label>栏目名称</label>
+                            <input type="text"
+                                   value='{$vo.cate_name}'
+                                   name="cate_name"  datatype="*1-20"
+                                   nullmsg="请输入角色名称" errormsg="长度不能超过20"
+                                   placeholder="请输入栏目名称" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>上级栏目</label>
+                            <select name="pid">
+                                <option value="0">顶级栏目</option>
+                                <foreach name="dlist" item="val">
+                                    <option value="{$val.id}" <if condition="$vo.pid eq $val['id']">selected</if>>
+                                    {$val.level|str_repeat="&nbsp;&nbsp;",###}{$val.cate_name}</option>
+                                </foreach>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>是否显示</label><br>
+                            <input type="radio" name="is_show" value="1" <if condition="$vo.is_show eq 1">checked</if>>是
+                            <input type="radio" name="is_show"   value="0" <if condition="$vo.is_show eq 0">checked</if>>否
+                        </div>
+                        <div class="form-group">
+                            <label>是否导航</label><br>
+                            <input type="radio" name="is_nav" value="1" <if condition="$vo.is_nav eq 1">checked</if>>是
+                            <input type="radio" name="is_nav"   value="0" <if condition="$vo.is_nav eq 0">checked</if>>否
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>

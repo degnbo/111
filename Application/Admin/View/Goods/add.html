@@ -1,0 +1,225 @@
+<include file="Public/header" />
+
+<!--多图上传插件-->
+<script type="text/javascript" src="__PUBLIC__/dtupload/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/dtupload/js/swfupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/dtupload/js/handlers.js"></script>
+<link href="__PUBLIC__/dtupload/css/default.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<script src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">商品列表</a>
+            </li>
+            <li>
+                <strong>添加商品</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Goods/lis')}";
+                            location.reload();
+                            location.href=url;
+                        }
+                        $(function(){
+                        })
+                    </script>
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">栏目列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Goods/add')}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>班级logo展示</label>
+                            <input type="file" name="myfile" datatype="*" nullmsg="请选择"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>报名班级名称</label>
+                            <input type="text" name="goods_name"
+                                   datatype="*1-20"
+                                   nullmsg="请输入报名班级名称" errormsg="长度不能超过30"
+                                   placeholder="请输入报名班级名称" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>报名原价格</label>
+                            <input type="text" name="old_price"
+                                   datatype="n"
+                                   nullmsg="请输入报名原价格" errormsg="请输入数字"
+                                   placeholder="请输入报名原价格" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>报名现价格</label>
+                            <input type="text" name="now_price"
+                                   datatype="n"
+                                   nullmsg="请输入报名现价格" errormsg="请输入数字"
+                                   placeholder="请输入报名现价格" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                        <label>报名开始时间</label>
+                            <input type="text"  class="laydate-icon"
+                                   onclick="laydate({istime:true,format: 'YYYY-MM-DD hh:mm:ss'})"  name="start_time"
+                                   nullmsg="请输入时间"  errormsg='填写日期格式'
+                                    />
+                        <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>报名结束时间</label>
+                            <input type="text"  class="laydate-icon"
+                                   onclick="laydate({istime:true,format: 'YYYY-MM-DD hh:mm:ss'})"  name="end_time"
+                                   nullmsg="请输入时间"  errormsg='填写日期格式'
+                                   />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>商品排序数字越小越靠前</label>
+                            <input type="text" name="sort_num"
+                                   datatype="n"  value="100"
+                                   nullmsg="请输商品现价格" errormsg="请输入数字"
+                                   placeholder="请输入数字" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>产品类型</label>
+                            <select name="type_id" datatype="*" nullmsg="请选择商品类型" >
+                                <option value="">请选择商品类型</option>
+                                <foreach name="tlist" item="vo">
+                                    <option value="{$vo.id}">{$vo.typename}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>栏目类型</label>
+                            <select name="cate_id" datatype="*" nullmsg="请选择子栏目类型">
+                                <foreach name="clist" item="val">
+                                    <option <if condition="$val['pid'] eq 0">value=''<else/>value={$val.id}</if>>
+                                    {$val.level|str_repeat="&nbsp;&nbsp;",###}{$val.cate_name}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>是否上架</label><br>
+                            <input type="radio" name="is_on_sale" value="1" datatype="*" nullmsg="请选择">是
+                            <input type="radio" name="is_on_sale"   value="0">否
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>班级地点</label><br>
+                            <select name="dd" datatype="*"  nullmsg="请选择">
+                                <option value="">选择报考班级地点</option>
+                                <foreach name="plist" item="vv">
+                                    <option value="{$vv.Pname}">{$vv.Pname}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>商品描述</label><br>
+                            <textarea name="goods_desc" cols="50" rows="5" style="width:1000px;height:500px"></textarea>
+                            <!--引入kindeditor编辑器-->
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+                            <script type="text/javascript">
+                                var editor;
+                                KindEditor.ready(function(K) {
+                                    editor = K.create('textarea[name="goods_desc"]', {
+                                        allowFileManager : true,
+                                        afterBlur : function(){
+                                            //编辑器失去焦点时直接同步，可以取到值
+                                            this.sync();
+                                        }
+                                    });
+                                });
+                            </script>
+                            <!--引入kindeditor编辑器-->
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+						<div class="form-group">
+                            <label>图集上传</label>
+                            <div style="width: 610px; height: auto; border: 1px solid #e1e1e1; font-size: 12px; padding: 10px;">
+                                <span id="spanButtonPlaceholder"></span>
+                                <div id="divFileProgressContainer"></div>
+                                <div id="thumbnails">
+                                    <ul id="pic_list" style="margin: 5px;"></ul>
+                                    <div style="clear: both;"></div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="url" id="" value=""/>
+                            <script type="text/javascript">
+                                var swfu;
+                                window.onload = function () {
+                                    swfu = new SWFUpload({
+                                        //upload_url: "__URL__/uploadImg",
+                                        upload_url: "{:U('Goods/upload1')}",
+                                        post_params: {"PHPSESSID": "<?php echo session_id();?>"},
+                                        file_size_limit : "2 MB",
+                                        file_types : "*.jpg;*.png;*.gif;*.bmp",
+                                        file_types_description : "JPG Images",
+                                        file_upload_limit : "100",
+                                        file_queue_error_handler : fileQueueError,
+                                        file_dialog_complete_handler : fileDialogComplete,
+                                        upload_progress_handler : uploadProgress,
+                                        upload_error_handler : uploadError,
+                                        upload_success_handler : uploadSuccess,
+                                        upload_complete_handler : uploadComplete,
+                                        button_image_url : "__PUBLIC__/dtupload/images/upload.png",
+                                        button_placeholder_id : "spanButtonPlaceholder",
+                                        button_width: 113,
+                                        button_height: 33,
+                                        button_text : '',
+                                        button_text_style : '.spanButtonPlaceholder { font-family: Helvetica, Arial, sans-serif; font-size: 14pt;} ',
+                                        button_text_top_padding: 0,
+                                        button_text_left_padding: 0,
+                                        button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+                                        button_cursor: SWFUpload.CURSOR.HAND,
+                                        flash_url : "__PUBLIC__/dtupload/swf/swfupload.swf",
+                                        custom_settings : {
+                                            upload_target : "divFileProgressContainer"
+                                        },
+                                        debug: false
+                                    });
+                                };
+                            </script>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>下一步</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>

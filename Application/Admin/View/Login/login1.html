@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+
+    <title>界拓自由潜水 - 后台登录</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link href="__PUBLIC__/Admin/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+     <link href="__PUBLIC__/Admin/font-awesome/css/font-awesome.css?v=4.3.0" rel="stylesheet">
+
+    <link href="__PUBLIC__/Admin/css/style.css?v=2.2.0" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Admin/css/Validform2.css" />
+    <script type="text/javascript" src="__PUBLIC__/Home/zdy/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name" style="font-size: 40px">界拓自由潜水</h1>
+
+            </div>
+            <h3>欢迎使用 界拓自由潜水后台管理系统</h3>
+
+            <form class="m-t" role="form" action="{:U('Login/login')}" method="post">
+                <div class="form-group">
+                    <input type="username"
+                           datatype="*1-20" nullmsg="用户名不能为空用" name="username"
+                           errermsg="用户名太长" ajaxurl="{:U('Login/checkUser')}"
+                           class="form-control" placeholder="用户名" required="">
+                    <div class='error' style="position:relative;overflow:hidden;top:-25px;left:120px"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password"
+                           nullmsg="密码不能为空" errormsg="6-16位密码" datatype="*6-16"
+                           class="form-control" placeholder="密码" >
+                    <div class='error' style="position: relative;top:-25px;left:110px"></div>
+                </div>
+               <!-- <div class="form-group">
+                    <input type="yzm" class="form-control"
+                           datatype="*4-4" ajaxurl="{:U('Login/checkVerify')}"
+                           style="width:100px;height:55px"  nullmsg="验证码不能为空"
+                           errermsg="4位验证码">
+                    <img src="{:U('Login/verify')}" style="position: relative;left:-60px;top:-50px;"
+                         onclick="this.src=this.src+'?'+Math.random();" />
+                    <span class='error' style="position: relative;left:-320px"></span>
+                </div>-->
+                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+<script>
+    $(".m-t").Validform({
+        //ajaxPost:true,
+        tiptype: function (msg, o, cssctl) {
+            if (!o.obj.is("form")) {
+                var objtip = o.obj.siblings('div.error');
+                cssctl(objtip, o.type);
+                objtip.text(msg);
+            }
+        }
+        //postonce:true
+        //ajaxPost:true
+
+    })
+</script>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script><!--统计代码，可删除-->
+
+</body>
+
+</html>

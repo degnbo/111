@@ -1,0 +1,99 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">会员管理</a>
+            </li>
+            <li>
+                <strong>添加会员</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>表单验证</h5>
+                </div>
+                <script>
+                    function fnClickAddRow() {
+                        var url="{:U('Role/add')}";
+                        location.reload();
+                        location.href=url;
+                    }
+                    $(function(){
+                    })
+                </script>
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">会员列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Member/add')}" method="post">
+                        <div class="col-md-12" style="position: relative;top:50px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">文本框：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">说明文字</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">密码框：</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">下拉列表：</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name=""></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">文件域：</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">单选框：</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">选项1</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios">选项2</label>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+        <script>
+            $("#form").Validform({
+                tiptype:function(msg,o,cssctl) {
+                    if (!o.obj.is("form")) {
+                        var objtip = o.obj.next('div.error');
+                        cssctl(objtip, o.type);
+                        objtip.text(msg);
+                    }
+                }
+            })
+        </script>
+<include file="Public/footer"/>

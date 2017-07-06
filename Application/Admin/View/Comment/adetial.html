@@ -1,0 +1,265 @@
+<include file="Public/header"/>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>数据表格</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">订单列表</a>
+            </li>
+            <li>
+                <strong>订单详情</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                                <span class="">
+                                    <a href="javascript:self.location=document.referrer;" class="btn btn-primary ">订单列表
+                                    </a>
+                                </span>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <tbody>
+                        <tr>
+                            <td>订单号:</td>
+                            <td><eq name="list.ordernum" value="">--<else />
+                                {$list.ordernum}
+                            </eq>
+                            </td>
+                        </tr>
+                        <script src="__PUBLIC__/Admin/layer/layer.js"></script>
+                        <script>
+                            function fnClickAddRow(obj,onum) {
+                                layer.open({
+                                    type: 2,
+                                    title: '栏目管理',
+                                    shadeClose: true,
+                                    shade: 0.8,
+                                    area: ['680px', '90%'],
+                                    content: '/index.php/Admin/Order/find_order?onum='+onum, //iframe的url
+                                    end: function () {
+                                        //location.reload();
+                                    }
+
+                                });
+                            }
+                        </script>
+                        <tr>
+                            <td>发布活动名称:</td>
+                            <td>{$list.tname}</td>
+                        </tr>
+                        <tr>
+                            <td>活动发布者:</td>
+                            <td>{$list.pname}</td>
+                        </tr>
+                        <tr>
+                            <td>活动ID:</td>
+                            <td>{$list.id}</td>
+                        <tr>
+                            <td>活动发布时间:</td>
+                            <td>{:date("Y年m月d日 H:i:s",$list['addtime'])}</td>
+                        </tr>
+
+                        <tr>
+                            <td>logo图标:</td>
+                            <td>
+                                <if condition="$list.pic neq ''">
+                                    <img src="__PUBLIC__/Uploads/{$list.pic}" width="100px" height="80px"/>
+                                </if>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>活动开始时间:</td>
+                            <td>{:date("Y年m月d日 H:i:s",$list['start_time'])}</td>
+                        </tr>
+                        <if condition="$list.acode neq 1">
+                        <tr>
+                            <td>发布者交押金总额:</td>
+                            <td>￥{$list['number']*$list['price']}</td>
+                        </tr>
+                            </if>
+                        <tr>
+                            <td>允许最大参与人数:</td>
+                            <td>{$list.number}人</td>
+                        </tr>
+
+                        <tr>
+                            <td>活动已经参与人数:</td>
+                            <td>{$list.sl}人</td>
+                        </tr>
+
+                        <tr>
+                            <td><if condition="$list.acode eq 1">参与者每人需要缴纳费用:<else />参与者每人需要缴纳的押金:</if></td>
+                            <td>￥{$list.price}</td>
+                        </tr>
+
+                        <tr>
+                            <td>支付状态:</td>
+                            <td>
+                                <if condition="$list.acode eq 1">
+                                    <font color="green">后台发布的活动</font>
+                                    <else />
+                                    <if condition="$list.is_pay eq 0">
+                                        待支付
+                                        <elseif condition="$list.is_pay eq 1 "/>
+                                        已支付
+                                        <elseif condition="$list.is_pay eq 2 "/>
+                                        退款中
+                                        <elseif condition="$list.is_pay eq 3 "/>
+                                        已退款
+                                        <elseif condition="$list.is_pay eq 4 "/>
+                                        活动取消
+                                        <elseif condition="$list.is_pay eq 5 "/>
+                                        非签到，已退款
+                                        <elseif condition="$list.is_pay eq 6 "/>
+                                        未退款
+                                    </if>
+                                </if>
+                            </td>
+                        </tr>
+                        <script>
+                            function return_money(id){
+                                $.ajax({
+                                    url:"{:U('Order/pub_return')}",
+                                    data:{id:id},
+                                    dataType:'json',
+                                    type:'get',
+                                    success:function(data){
+                                        if(data.status){
+                                            alert(data.msg);
+                                            location.reload();
+                                        }else{
+                                            alert(data.msg);
+                                        }
+                                    },
+                                    error:function(){
+                                        alert('错误');
+                                    }
+                                });
+                            }
+                        </script>
+                        <if condition="$list.pay_status eq 1">
+                            <tr>
+                                <td>支付时间:</td>
+                                <td>{$list.pay_time|date="Y-m-d H:i:s",###}</td>
+                            </tr>
+                        </if>
+                        <tr>
+                            <td>活动地点:</td>
+                            <td>{$list.address}</td>
+                        </tr>
+                        <tr>
+                            <td>活动地图位置:</td>
+                            <td><div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div></td>
+                        </tr>
+                        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=nLTOGjrnicsbxqsLDChNXgoS&services=&t=20160804144823"></script>
+
+                        <script type="text/javascript">
+                            //创建和初始化地图函数：
+                            var jd='{$list.lat}';
+                            var wd='{$list.lng}';
+                            function initMap(){
+                                createMap();//创建地图
+                                setMapEvent();//设置地图事件
+                                addMapControl();//向地图添加控件
+                            }
+
+                            //创建地图函数：
+                            function createMap(){
+                                var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+                                var point = new BMap.Point(wd,jd);//定义一个中心点坐标
+                                map.centerAndZoom(point,12);//设定地图的中心点和坐标并将地图显示在地图容器中
+                                var icon = new BMap.Icon('https://oho.oxygenhoop.com/Public/Uploads/baidu.png', new BMap.Size(20, 32), {
+                                    anchor: new BMap.Size(10, 30)
+                                });
+                                var mkr =new BMap.Marker(new BMap.Point(wd,jd), {
+                                    icon: icon
+                                });
+                                map.addOverlay(mkr);
+                                window.map = map;//将map变量存储在全局
+                            }
+                            //地图事件设置函数：
+                            function setMapEvent(){
+                                map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                                map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+                                map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                                map.enableKeyboard();//启用键盘上下左右键移动地图
+                            }
+
+                            //地图控件添加函数：
+                            function addMapControl(){
+                                //向地图中添加缩放控件
+                                var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+                                map.addControl(ctrl_nav);
+                                //向地图中添加缩略图控件
+                                var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+                                map.addControl(ctrl_ove);
+                                //向地图中添加比例尺控件
+                                var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+                                map.addControl(ctrl_sca);
+                            }
+
+
+                            initMap();//创建和初始化地图
+                            var geoc = new BMap.Geocoder();
+                            function showInfo(e){
+                                //alert(e.point.lat+''+ e.point.lng);
+                                document.getElementById('lat').value= e.point.lat;
+                                document.getElementById('lng').value= e.point.lng;
+                                var pt = e.point;
+                                geoc.getLocation(pt, function (rs) {
+                                    var addComp = rs.addressComponents;
+                                    //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                                    document.getElementById('address').value=addComp.province +addComp.city+addComp.district+addComp.street+addComp.streetNumber;
+                                })
+                            }
+                            //var localSearch = new BMap.LocalSearch(map);
+                            //localSearch.enableAutoViewport(); //允许自动调节窗体大小
+                            function searchByStationName() {
+                                var keyword = document.getElementById("text_").value;
+                                localSearch.setSearchCompleteCallback(function (searchResult) {
+                                    var poi = searchResult.getPoi(0);
+                                    document.getElementById("result_").value = poi.point.lng + "," + poi.point.lat; //获取经度和纬度，将结果显示在文本框中
+                                    document.getElementById('address').value=keyword;
+                                    document.getElementById('lat').value= poi.point.lat;
+                                    document.getElementById('lng').value=poi.point.lng;
+
+                                    map.centerAndZoom(poi.point, 13);
+                                });
+                                localSearch.search(keyword);
+                            }
+                            //点击地图时选择位置
+                            //map.addEventListener('click',showInfo);
+                            /*map.addEventListener("click", function(e) {
+                             var pt = e.point;
+                             geoc.getLocation(pt, function (rs) {
+                             var addComp = rs.addressComponents;
+                             alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                             })
+                             })*/
+                        </script>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+                <ul class="pagination"><li class="paginate_button previous disabled" aria-controls="editable" tabindex="0" id="editable_previous">
+                    {$page}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public/footer"/>

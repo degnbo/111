@@ -1,0 +1,131 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">EBAC管理</a>
+            </li>
+            <li>
+                <strong>修改角色</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <script>
+                function fnClickAddRow() {
+                var url="{:U('Admin/lis')}";
+                    location.reload();
+                location.href=url;
+                }
+                $(function(){
+                })
+                </script>
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">管理员列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Admin/edit',array('id'=>$vo['id']))}" method="post" onsubmit='return checkform()'>
+                        <div class="form-group">
+                            <foreach name="rolelist" key="k" item="val">
+                                <input type="radio"  datatype="*"
+                                       name="role_id[]" <if condition="in_array($val['id'],$roleId)">checked</if>
+                                value="{$val.id}"/>{$val.role_name}<br>
+                            </foreach>
+							
+                            <div class="error" style="position:relative;left:395px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>用户姓名</label>
+                            <input type="text" placeholder="请输入用户名" datatype="*1-20"
+							<if condition="$roleId[0] eq '1'">readonly</if>
+                                   name="username" class="form-control" value="{$vo.username}"
+                                   nullmsg="请输入角色名称" errormsg="长度不能超过20" datatype="*"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>用户密码</label>
+                            <input type="password" placeholder="请输入密码"
+                                   name="password" class="form-control" datatype="kong"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"><font color="red">*密码为空表示不修改</font></div>
+                        </div>
+                        <div class="form-group">
+                            <label>确认密码</label>
+                            <input type="password" placeholder="请再次输入密码" datatype="kong"
+                                   name="cpw" class="form-control" recheck="password"
+                                   nullmsg="请再次输入密码" errormsg="两次密码不一致" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group" id="jy">
+                            <if condition="in_array('1',$roleId) eq false">
+                                <label>是否禁用</label>
+                                <input type="radio" name="is_deny" value="1" <if condition="$vo['is_deny'] eq 1">checked</if>/>是
+                                <input type="radio" name="is_deny"  value="0" <if condition="$vo['is_deny'] eq 0">checked</if>/>否
+                                <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                            </if>
+
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs"  type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+        <script>
+            $("#form").Validform({
+                tiptype:function(msg,o,cssctl) {
+                    if (!o.obj.is("form")) {
+                        var objtip = o.obj.siblings('div.error');
+                        cssctl(objtip, o.type);
+                        objtip.text(msg);
+                    }
+                },
+                datatype:{
+                    'kong':function(gets,obj,curform,regxp){
+                        //var max=16 ;var min=6;
+                        if(obj.val()==''){
+                            return true;
+                        }else{
+                            if(obj.val().length>=6 && obj.val().length<=16){
+                                return true;
+                            }else{
+                                return '请输入6-16位的字符或数字';
+                            }
+                        }
+                    },
+                    "need1":function(gets,obj,curform,regxp){
+                        var need=1,
+                                numselected=curform.find("input[name='"+obj.attr("name")+"']:checked").length;
+                        return  numselected >= need ? true : "请至少选择"+need+"项！";
+                    }
+                }
+               /* datatype:{
+                    "max2":function(gets,obj,curform,regxp){
+                        var atmax=1,
+                                numselected=curform.find("input[name='"+obj.attr("name")+"']:checked").length;
+
+                        if(numselected==0){
+                            return false;
+                        }else if(numselected>atmax){
+                            return "最多只能选择"+atmax+"项！";
+                        }
+                        return  true;
+                    }
+                }*/
+            })
+
+        </script>
+<include file="Public/footer"/>

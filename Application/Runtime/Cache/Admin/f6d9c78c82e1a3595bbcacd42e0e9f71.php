@@ -1,0 +1,422 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+
+    <title>oho后台管理</title>
+    <meta name="keywords" content="界拓自由潜水">
+    <meta name="description" content="界拓自由潜水">
+    <link href="/Public/Admin/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="/Public/Admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/Public/Admin/css/animate.css" rel="stylesheet">
+    <link href="/Public/Admin/css/style.css?v=2.2.0" rel="stylesheet">
+    <!-- 表单插件 -->
+    <link type="text/css" rel="stylesheet" href="/Public/Admin/css/Validform1.css" />
+    <!-- Data Tables -->
+    <link href="/Public/Admin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <script src="/Public/Admin/js/jquery-2.1.1.min.js"></script>
+    <style>
+        .ede{
+            width:20px;height:20px;
+            background:red;
+        }
+        .num{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:25px;height:5px;margin:12px;
+        }
+        .current{
+            padding:5px 8px;background:lightseagreen;
+            width:25px;height:5px;margin:8px;
+        }
+        .prev,.next{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:20px;height:5px;margin:8px;
+        }
+		.first,.end{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:20px;height:5px;margin:8px;
+        }
+        .jz{
+            text-align: center;
+        }
+    .nav.nav-second-level{
+    display:none;
+    }
+    </style>
+
+<script>
+$(function(){
+$('.nav-label').click(function(){
+$(this).parent().next().stop().slideToggle();
+
+})
+
+})
+</script>
+</head>
+<?php
+$model=D('Admin'); $id=I('session.admin_id'); $navlist=$model->getNav($id); $logo=$model->where(array('id'=>$id))->find(); ?>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="/Public/Uploads/<?php echo ($logo["logo"]); ?>" width="80px" height="80px"/>
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo I('session.admin_us');?></strong>
+                             </span>  <span class="text-muted text-xs block">欢迎登录 <b class="caret"></b></span> </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="javascript:void(0)" id='xg'>修改头像</a>
+                                </li>
+								<li style='display:none'>
+								<form method='post' enctype="multipart/form-data" id='bd' action="<?php echo U('Index/xgtx');?>">
+								<input type='file' name='myfile'  id='sc'/>
+								</form>	
+                                 </li>								
+                              <script>
+							      $('#xg').click(function(){
+								       $('#sc').click();
+								  })
+								  $('#sc').change(function(){
+								       $('#bd').submit();
+								  })
+                                  var ww='http://web.oho.com/index.php/Home/Index/search?keyword=12&lat=39.90403&lng=116.407526';
+							  </script>
+                                <li><a href="<?php echo U('Login/logout');?>">安全退出</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            H+
+                        </div>
+
+                    </li>
+                    <li class='show'>
+                        <a href="<?php echo U('Index/index');?>" ><i class="fa fa-envelope"></i>
+                        <span class="nav-label">后台首页</span>
+                       </a>
+                    </li>
+					<li class='show'>
+                        <a href="<?php echo U('Home/Index/index');?>" target="_blank"><i class="fa fa-envelope"></i>
+                        <span class="nav-label">前台首页</span>
+                       </a>
+                    </li>
+                    <?php foreach($navlist as $nav){?>
+                     <li class='show'>
+                        <a href="javascript:void(0)" >
+                        <i class="fa fa-envelope">
+                        </i> <span class="nav-label">
+                        <?php echo $nav['pname']?></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                       <?php foreach($nav['chilren'] as $vv){?>
+                        <li><a href="<?php echo U($vv['purl']) ?>">
+                        <?php echo $vv['pname']?>
+                        </a>
+                           </li>
+                        <?php }?>
+
+                        </ul>
+                    </li>
+                    <?php }?>
+                    <li class='show'>
+                        <a href="<?php echo U('Index/clearCache');?>" ><i class="fa fa-envelope"></i>
+                            <span class="nav-label">清除缓存</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+   <div id="page-wrapper" class="gray-bg dashbard-1">
+            
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>数据表格</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">订单列表</a>
+            </li>
+            <li>
+                <strong>订单详情</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                                <span class="">
+                                    <a href="javascript:self.location=document.referrer;" class="btn btn-primary ">订单列表
+                                    </a>
+                                </span>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <tbody>
+                        <tr>
+                            <td>订单号:</td>
+                            <td><?php if(($list["ordernum"]) == ""): ?>--<?php else: ?>
+                                <?php echo ($list["ordernum"]); endif; ?>
+                            </td>
+                        </tr>
+                        <script src="/Public/Admin/layer/layer.js"></script>
+                        <script>
+                            function fnClickAddRow(obj,onum) {
+                                layer.open({
+                                    type: 2,
+                                    title: '栏目管理',
+                                    shadeClose: true,
+                                    shade: 0.8,
+                                    area: ['680px', '90%'],
+                                    content: '/index.php/Admin/Order/find_order?onum='+onum, //iframe的url
+                                    end: function () {
+                                        //location.reload();
+                                    }
+
+                                });
+                            }
+                        </script>
+                        <tr>
+                            <td>发布活动名称:</td>
+                            <td><?php echo ($list["tname"]); ?></td>
+                        </tr>
+                        <tr>
+                            <td>活动发布者:</td>
+                            <td><?php echo ($list["pname"]); ?></td>
+                        </tr>
+                        <tr>
+                            <td>活动ID:</td>
+                            <td><?php echo ($list["id"]); ?></td>
+                        <tr>
+                            <td>活动发布时间:</td>
+                            <td><?php echo date("Y年m月d日 H:i:s",$list['addtime']);?></td>
+                        </tr>
+
+                        <tr>
+                            <td>logo图标:</td>
+                            <td>
+                                <?php if($list["pic"] != ''): ?><img src="/Public/Uploads/<?php echo ($list["pic"]); ?>" width="100px" height="80px"/><?php endif; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>活动开始时间:</td>
+                            <td><?php echo date("Y年m月d日 H:i:s",$list['start_time']);?></td>
+                        </tr>
+                        <?php if($list["acode"] != 1): ?><tr>
+                            <td>发布者交押金总额:</td>
+                            <td>￥<?php echo ($list['number']*$list['price']); ?></td>
+                        </tr><?php endif; ?>
+                        <tr>
+                            <td>允许最大参与人数:</td>
+                            <td><?php echo ($list["number"]); ?>人</td>
+                        </tr>
+
+                        <tr>
+                            <td>活动已经参与人数:</td>
+                            <td><?php echo ($list["sl"]); ?>人</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php if($list["acode"] == 1): ?>参与者每人需要缴纳费用:<?php else: ?>参与者每人需要缴纳的押金:<?php endif; ?></td>
+                            <td>￥<?php echo ($list["price"]); ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>支付状态:</td>
+                            <td>
+                                <?php if($list["acode"] == 1): ?><font color="green">后台发布的活动</font>
+                                    <?php else: ?>
+                                    <?php if($list["is_pay"] == 0): ?>待支付
+                                        <?php elseif($list["is_pay"] == 1 ): ?>
+                                        已支付
+                                        <?php elseif($list["is_pay"] == 2 ): ?>
+                                        退款中
+                                        <?php elseif($list["is_pay"] == 3 ): ?>
+                                        已退款
+                                        <?php elseif($list["is_pay"] == 4 ): ?>
+                                        活动取消
+                                        <?php elseif($list["is_pay"] == 5 ): ?>
+                                        非签到，已退款
+                                        <?php elseif($list["is_pay"] == 6 ): ?>
+                                        未退款<?php endif; endif; ?>
+                            </td>
+                        </tr>
+                        <script>
+                            function return_money(id){
+                                $.ajax({
+                                    url:"<?php echo U('Order/pub_return');?>",
+                                    data:{id:id},
+                                    dataType:'json',
+                                    type:'get',
+                                    success:function(data){
+                                        if(data.status){
+                                            alert(data.msg);
+                                            location.reload();
+                                        }else{
+                                            alert(data.msg);
+                                        }
+                                    },
+                                    error:function(){
+                                        alert('错误');
+                                    }
+                                });
+                            }
+                        </script>
+                        <?php if($list["pay_status"] == 1): ?><tr>
+                                <td>支付时间:</td>
+                                <td><?php echo (date("Y-m-d H:i:s",$list["pay_time"])); ?></td>
+                            </tr><?php endif; ?>
+                        <tr>
+                            <td>活动地点:</td>
+                            <td><?php echo ($list["address"]); ?></td>
+                        </tr>
+                        <tr>
+                            <td>活动地图位置:</td>
+                            <td><div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div></td>
+                        </tr>
+                        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=nLTOGjrnicsbxqsLDChNXgoS&services=&t=20160804144823"></script>
+
+                        <script type="text/javascript">
+                            //创建和初始化地图函数：
+                            var jd='<?php echo ($list["lat"]); ?>';
+                            var wd='<?php echo ($list["lng"]); ?>';
+                            function initMap(){
+                                createMap();//创建地图
+                                setMapEvent();//设置地图事件
+                                addMapControl();//向地图添加控件
+                            }
+
+                            //创建地图函数：
+                            function createMap(){
+                                var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+                                var point = new BMap.Point(wd,jd);//定义一个中心点坐标
+                                map.centerAndZoom(point,12);//设定地图的中心点和坐标并将地图显示在地图容器中
+                                var icon = new BMap.Icon('https://oho.oxygenhoop.com/Public/Uploads/baidu.png', new BMap.Size(20, 32), {
+                                    anchor: new BMap.Size(10, 30)
+                                });
+                                var mkr =new BMap.Marker(new BMap.Point(wd,jd), {
+                                    icon: icon
+                                });
+                                map.addOverlay(mkr);
+                                window.map = map;//将map变量存储在全局
+                            }
+                            //地图事件设置函数：
+                            function setMapEvent(){
+                                map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                                map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+                                map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                                map.enableKeyboard();//启用键盘上下左右键移动地图
+                            }
+
+                            //地图控件添加函数：
+                            function addMapControl(){
+                                //向地图中添加缩放控件
+                                var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+                                map.addControl(ctrl_nav);
+                                //向地图中添加缩略图控件
+                                var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+                                map.addControl(ctrl_ove);
+                                //向地图中添加比例尺控件
+                                var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+                                map.addControl(ctrl_sca);
+                            }
+
+
+                            initMap();//创建和初始化地图
+                            var geoc = new BMap.Geocoder();
+                            function showInfo(e){
+                                //alert(e.point.lat+''+ e.point.lng);
+                                document.getElementById('lat').value= e.point.lat;
+                                document.getElementById('lng').value= e.point.lng;
+                                var pt = e.point;
+                                geoc.getLocation(pt, function (rs) {
+                                    var addComp = rs.addressComponents;
+                                    //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                                    document.getElementById('address').value=addComp.province +addComp.city+addComp.district+addComp.street+addComp.streetNumber;
+                                })
+                            }
+                            //var localSearch = new BMap.LocalSearch(map);
+                            //localSearch.enableAutoViewport(); //允许自动调节窗体大小
+                            function searchByStationName() {
+                                var keyword = document.getElementById("text_").value;
+                                localSearch.setSearchCompleteCallback(function (searchResult) {
+                                    var poi = searchResult.getPoi(0);
+                                    document.getElementById("result_").value = poi.point.lng + "," + poi.point.lat; //获取经度和纬度，将结果显示在文本框中
+                                    document.getElementById('address').value=keyword;
+                                    document.getElementById('lat').value= poi.point.lat;
+                                    document.getElementById('lng').value=poi.point.lng;
+
+                                    map.centerAndZoom(poi.point, 13);
+                                });
+                                localSearch.search(keyword);
+                            }
+                            //点击地图时选择位置
+                            //map.addEventListener('click',showInfo);
+                            /*map.addEventListener("click", function(e) {
+                             var pt = e.point;
+                             geoc.getLocation(pt, function (rs) {
+                             var addComp = rs.addressComponents;
+                             alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                             })
+                             })*/
+                        </script>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+                <ul class="pagination"><li class="paginate_button previous disabled" aria-controls="editable" tabindex="0" id="editable_previous">
+                    <?php echo ($page); ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="pull-right">
+        By：<a href="http://www.zi-han.net" target="_blank">小灏科技有限公司</a>
+    </div>
+    <div>
+        <strong>Copyright</strong> MrBo &copy; 2017
+    </div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+<!-- Mainly scripts -->
+<script src="/Public/Admin/js/jquery-2.1.1.min.js"></script>
+<script src="/Public/Admin/js/bootstrap.min.js?v=3.4.0"></script>
+
+<script src="/Public/Admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+
+<!-- Custom and plugin javascript -->
+<!--<script src="/Public/Admin/js/hplus.js?v=2.2.0"></script>-->
+<script src="/Public/Admin/js/plugins/pace/pace.min.js"></script>
+<!-- Page-Level Scripts -->
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">EBAC管理</a>
+            </li>
+            <li>
+                <strong>添加管理员</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <script>
+                    function fnClickAddRow() {
+                        var url="{:U('Admin/lis')}";
+                        location.href=url;
+                    }
+                    /*$(function(){
+                        $("input[type='checkbox']").eq(0).click(function(){
+                            $('#jy').toggle();
+                        })
+
+                    })*/
+                </script>
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0);"class="btn btn-primary ">管理员列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Admin/add')}" method="post">
+                        <div class="form-group">
+                            <label>角色选择</label><br>
+                            <foreach name="rolelist" key='k' item="vo">
+                                <input type="radio" name="role_id[]" value="{$vo.id}" datatype="*"
+                               />{$vo.role_name}<br>
+                            </foreach>
+
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                        <label>用户姓名</label>
+                        <input type="text" placeholder="请输入用户名" datatype="*1-20"
+                               name="username" class="form-control"
+                               nullmsg="请输入角色名称" errormsg="长度不能超过20" datatype="*"/>
+                        <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>用户密码</label>
+                            <input type="password" placeholder="请输入密码"
+                                   name="password" class="form-control"
+                                   nullmsg="请输入密码" errormsg="6-16字母数字" datatype="*6-16"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>确认密码</label>
+                            <input type="password" placeholder="请再次输入密码" datatype="*6-16"
+                                   name="cpw" class="form-control" recheck="password"
+                                   nullmsg="请再次输入密码" errormsg="重新输入" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group" id="jy">
+                            <label>是否禁用</label>
+                            <input type="radio" name="is_deny" value="1"  nullmsg="请选择"/>是
+                            <input type="radio" name="is_deny"  value="0" checked/>否
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+        <script>
+            $(function(){
+                //alert('ok');
+                $(":checkbox").click(function(){
+
+                    // 先获取当前这个按钮的level
+                    var cur_level = $(this).attr('level');
+                    //jquery1.4没有这个属性
+                    if($(this).prop("checked"))
+                    {
+                        var tmp_level = cur_level;
+                        /*********** 所有父权限也选中 ************/
+                            // 循环所有前面的
+                        $(this).prevAll(":checkbox").each(function(k,v){
+                            // 如果权限高于它就选中
+                            if($(v).attr('level') < tmp_level)
+                            {
+                                $(v).prop("checked", "checked");
+                                tmp_level--;  // 找到之后向上提一级
+                            }
+                        });
+                        /*********** 所有子权限也选中 ************/
+                        $(this).nextAll(":checkbox").each(function(k,v){
+                            // 如果权限高于它就选中
+                            if($(v).attr('level') > cur_level)
+                                $(v).prop("checked", "checked");
+                            else
+                                return false;
+                        });
+                    }
+                    else
+                    {
+                        $(this).nextAll(":checkbox").each(function(k,v){
+                            // 如果权限高于它就选中
+                            if($(v).attr('level') > cur_level)
+                                $(v).removeAttr("checked");
+                            else
+                                return false;
+                        });
+                    }
+                });
+            })
+            var i=0;
+            $("#form").Validform({
+                tiptype:function(msg,o,cssctl) {
+                    if (!o.obj.is("form")) {
+                        var objtip = o.obj.siblings('div.error');
+                        cssctl(objtip, o.type);
+                        objtip.text(msg);
+                    }
+                },
+                datatype:{
+                    "need1":function(gets,obj,curform,regxp){
+                        var need=1,
+                                numselected=curform.find("input[name='"+obj.attr("name")+"']:checked").length;
+                        return  numselected >= need ? true : "请至少选择"+need+"项！";
+                    },
+
+                    "max2":function(gets,obj,curform,regxp){
+                        var atmax=2,
+                                numselected=curform.find("input[name='"+obj.attr("name")+"']:checked").length;
+
+                        if(numselected==0){
+                            return false;
+                        }else if(numselected>atmax){
+                            return "最多只能选择"+atmax+"项！";
+                        }
+                        return  true;
+                    }
+                }
+            })
+        </script>
+<include file="Public/footer"/>

@@ -1,0 +1,156 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">轮播图片管理</a>
+            </li>
+            <li>
+                <strong>添加图片信息</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>表单验证</h5>
+                </div>
+                <script>
+                    function fnClickAddRow() {
+                        var url="{:U('Banner/lis')}";
+                        location.reload();
+                        location.href=url;
+                    }
+                    $(function(){
+                    })
+                </script>
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">轮播图片列表</a>
+                    </div>
+                    <style>
+                        #pic_container li{float:left;list-style-type:none;margin:5px;}
+                    </style>
+                    <form  id="upload_form" action="{:U('Banner/ajax_upload_pic')}" method="post"
+                          target="_ajax_upload_pic"  enctype="multipart/form-data">
+                        <div>
+                            图片<input
+                                onchange="document.getElementById('loading')
+                                .innerHTML='<img width=\'30\' src=\'/beidou/Public/Uploads/loading.gif\' />';
+                                document.getElementById('upload_form').submit();" type="file" name="pic" />
+                            <span id="loading"></span>
+                            <ul id="pic_container" style="width:800px;height:200px;border:1px solid #CCCBD9"></ul>
+                        </div>
+                        <div>
+                            <!--<button class="btn btn-sm btn-primary m-t-n-xs"   type="submit"><strong>提交</strong>
+                            </button>-->
+                        </div>
+                    </form>
+                    <form role="form" id="form" action="{:U('Banner/add')}" method="post">
+                        <div class="form-group">
+                            <label>banner模块名称</label>
+                            <input type="text" placeholder="banner模块名称" datatype="s1-30"
+                                   name="banner_name" class="form-control"
+                                   nullmsg="请输入banner模块名称" errormsg="长度过长" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>banner简介</label>
+                            <input type="text" placeholder="请输入banner简介" datatype="*1-100"
+                                   name="banner_des" class="form-control"
+                                   nullmsg="请输入banner简介" errormsg="长度过长" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>所属导航栏目类型</label>
+                            <select name="cate_id"datatype="*">
+                                <option value="">请选择栏目类型</option>
+                                <option value="149">首页</option>
+                                <option value="150">右侧广告位</option>
+                                <option value="151">底部左侧广告位</option>
+                                <option value="152">底部右侧广告位</option>
+                                <foreach name="clist" item="val">
+                                    <option value="{$val.id}">{$val.cate_name}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>所属师资类型</label>
+                            <select name="cid"  id="gg">
+                                <option value="">请选择栏目类型</option>
+                                <foreach name="sdata" item="val">
+                                    <option value="{$val.id}">{$val.cate_name}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div id="pic_path"></div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" onclick='form_submit()'><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <iframe style="display:none" width="800" height="500" id="_ajax_upload_pic" name="_ajax_upload_pic"></iframe>
+            </div>
+            <script>
+                // 提交表单时，把相册中的图片路径复制到商品表单中
+                function form_submit()
+                {
+                    // 把相册表单中的图片路径放到商品表单中
+                    $("input[name='pic[]']").each(function(k,v){
+                        var newv = $(v).clone();
+                        $("#pic_path").append(newv);
+                    });
+                    $("input[name='mid_pic[]']").each(function(k,v){
+                        var newv = $(v).clone();
+                        $("#pic_path").append(newv);
+                    });
+                    $("input[name='sm_pic[]']").each(function(k,v){
+                        var newv = $(v).clone();
+                        $("#pic_path").append(newv);
+                    });
+                    // 提交商品的表单
+                    var bb=$("input[name='banner_name']").val();
+                    var jj=$("input[name='banner_des']").val();
+                    var gg=$("#gg").val();
+                    if(!bb){
+                        alert('模块名称不能为空');
+                        return false;
+                    }
+                    if(!jj){
+                        alert('模块简介不能为空');
+                        return false;
+                    }
+                   /* if(!gg){
+                        alert('所属师资类型必选');
+                        return false;
+                    }*/
+                    document.getElementById('form').submit();
+
+                }
+            </script>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>

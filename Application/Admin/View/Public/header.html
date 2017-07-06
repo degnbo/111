@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+
+    <title>oho后台管理</title>
+    <meta name="keywords" content="界拓自由潜水">
+    <meta name="description" content="界拓自由潜水">
+    <link href="__PUBLIC__/Admin/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/Admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="__PUBLIC__/Admin/css/animate.css" rel="stylesheet">
+    <link href="__PUBLIC__/Admin/css/style.css?v=2.2.0" rel="stylesheet">
+    <!-- 表单插件 -->
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Admin/css/Validform1.css" />
+    <!-- Data Tables -->
+    <link href="__PUBLIC__/Admin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <script src="__PUBLIC__/Admin/js/jquery-2.1.1.min.js"></script>
+    <style>
+        .ede{
+            width:20px;height:20px;
+            background:red;
+        }
+        .num{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:25px;height:5px;margin:12px;
+        }
+        .current{
+            padding:5px 8px;background:lightseagreen;
+            width:25px;height:5px;margin:8px;
+        }
+        .prev,.next{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:20px;height:5px;margin:8px;
+        }
+		.first,.end{
+            padding:5px 8px;background:white;border:1px solid #ccc;
+            width:20px;height:5px;margin:8px;
+        }
+        .jz{
+            text-align: center;
+        }
+    .nav.nav-second-level{
+    display:none;
+    }
+    </style>
+
+<script>
+$(function(){
+$('.nav-label').click(function(){
+$(this).parent().next().stop().slideToggle();
+
+})
+
+})
+</script>
+</head>
+<?php
+$model=D('Admin');
+$id=I('session.admin_id');
+$navlist=$model->getNav($id);
+$logo=$model->where(array('id'=>$id))->find();
+//dump($navlist);
+
+?>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="__PUBLIC__/Uploads/{$logo.logo}" width="80px" height="80px"/>
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{:I('session.admin_us')}</strong>
+                             </span>  <span class="text-muted text-xs block">欢迎登录 <b class="caret"></b></span> </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="javascript:void(0)" id='xg'>修改头像</a>
+                                </li>
+								<li style='display:none'>
+								<form method='post' enctype="multipart/form-data" id='bd' action="{:U('Index/xgtx')}">
+								<input type='file' name='myfile'  id='sc'/>
+								</form>	
+                                 </li>								
+                              <script>
+							      $('#xg').click(function(){
+								       $('#sc').click();
+								  })
+								  $('#sc').change(function(){
+								       $('#bd').submit();
+								  })
+                                  var ww='http://web.oho.com/index.php/Home/Index/search?keyword=12&lat=39.90403&lng=116.407526';
+							  </script>
+                                <li><a href="{:U('Login/logout')}">安全退出</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            H+
+                        </div>
+
+                    </li>
+                    <li class='show'>
+                        <a href="{:U('Index/index')}" ><i class="fa fa-envelope"></i>
+                        <span class="nav-label">后台首页</span>
+                       </a>
+                    </li>
+					<li class='show'>
+                        <a href="{:U('Home/Index/index')}" target="_blank"><i class="fa fa-envelope"></i>
+                        <span class="nav-label">前台首页</span>
+                       </a>
+                    </li>
+                    <?php foreach($navlist as $nav){?>
+                     <li class='show'>
+                        <a href="javascript:void(0)" >
+                        <i class="fa fa-envelope">
+                        </i> <span class="nav-label">
+                        <?php echo $nav['pname']?></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                       <?php foreach($nav['chilren'] as $vv){?>
+                        <li><a href="<?php echo U($vv['purl']) ?>">
+                        <?php echo $vv['pname']?>
+                        </a>
+                           </li>
+                        <?php }?>
+
+                        </ul>
+                    </li>
+                    <?php }?>
+                    <li class='show'>
+                        <a href="{:U('Index/clearCache')}" ><i class="fa fa-envelope"></i>
+                            <span class="nav-label">清除缓存</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+   <div id="page-wrapper" class="gray-bg dashbard-1">
+            

@@ -1,0 +1,153 @@
+<include file="Public/header" />
+<!--<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>-->
+<script type="text/javascript" src="__PUBLIC__/jcrop/getjcrop.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">会员管理</a>
+            </li>
+            <li>
+                <strong>添加教练</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>表单验证</h5>
+                </div>
+                <script>
+                    function fnClickAddRow() {
+                        var url="{:U('Member/lis1')}";
+                        location.reload();
+                        location.href=url;
+                    }
+                    $(function(){
+                    })
+                </script>
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();"  href="javascript:void(0)" class="btn btn-primary">教练列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Member/add')}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>会员头像</label>
+                            <input type="text" style="width: 200px;" name="logo" id="logo" value="{$vo.logo}"/>
+                            <button type="button" class="btn btn-success" id="btnUpload">上传</button>
+                            <input type="file" name="myfile" style="display:none" id="myfile"/>
+                            <!--<span  class="btn btn-primary" ><a href="javascript:;" onclick="GetJcrop('jcrop','logo');return false;" style="color:#fff">裁剪</a></span>
+                            <input type="hidden" name="thumb_logo" value="" id="slt" >
+                            <div><img src="{$vo.thumb_logo}" id="slturl"/></div>-->
+                        </div>
+                        <script>
+                            $(function () {
+                                $('#btnUpload').click(function(){
+                                    $('#myfile').click();
+                                })
+                                $("#myfile").wrap("<form id='myupload' style='display:none' target='ajax_iframe' action=\"{:U('Member/ajax_uploads\')}\" method='post' enctype='multipart/form-data'></form>");
+                                $("#myfile").change(function(){ //选择文件
+                                    //alert(1);return false;
+                                    $("#logo").val('');
+                                    $("#myupload").submit();
+                                });
+
+                            });
+                        </script>
+                        <iframe name="ajax_iframe" style="display:none"></iframe>
+                        <input type="hidden" name="type"  value="2">
+                        <!--<div class="form-group">
+                            <label>邮箱</label>
+                            <input type="text" placeholder="请输入邮箱" datatype="e"
+                                   name="email" class="form-control" ajaxurl="{:U('Member/chk_email_exists')}"
+                                   nullmsg="请输入邮箱" errormsg="格式错误" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>性别</label><br>
+                            <input type="radio" name="sex"  value="1">男
+                            <input type="radio" name="sex" datatype="*" nullmsg="请选择" value="2">女
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <input type="text" placeholder="请输入姓名" datatype="*1-30"
+                                   name="name" class="form-control"
+                                   nullmsg="请输入姓名" errormsg="格式错误" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label>手机号</label>
+                            <input type="text" placeholder="请输入手机号" datatype="m"
+                                   name="phone" class="form-control" ajaxurl="{:U('Member/checkPhone')}"
+                                   nullmsg="请输入手机号" errormsg="格式错误" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>出生日期</label>
+                            <input type="text" name="birth"
+                                   datatype="*" onclick="laydate({format: 'YYYY-MM-DD'})"
+                                   nullmsg="请输入出生日期" errormsg="请输入出生日期"
+                            placeholder="请输入出生日期" class="laydate-icon">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>联系方式</label>
+                            <input type="text" placeholder="请输入联系方式" datatype="*1-50"
+                                   name="lianxi" class="form-control"
+                                   nullmsg="请输入联系方式" errormsg="字数过多" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>联系地址</label>
+                            <input type="text" placeholder="请输入详细地址" datatype="*1-30"
+                                   name="xxdz" class="form-control"
+                                   nullmsg="请输入详细地址" errormsg="格式错误" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>签名</label>
+                            <input type="text" placeholder="请输入签名" datatype="*1-100"
+                                   name="xxdz" class="form-control"
+                                   nullmsg="请输入签名" errormsg="内容过长" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label>形象照片</label>
+                            <input type="file" placeholder="请选择形象照片" datatype="*1-30"
+                                   name="files" class="form-control"
+                                   nullmsg="请选择形象照片"  />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>-->
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<script>
+    $("#form").Validform({
+        tiptype:function(msg,o,cssctl) {
+            if (!o.obj.is("form")) {
+                var objtip = o.obj.next('div.error');
+                cssctl(objtip, o.type);
+                objtip.text(msg);
+            }
+        }
+    })
+</script>
+<include file="Public/footer"/>

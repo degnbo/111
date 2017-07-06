@@ -1,0 +1,146 @@
+<include file="Public/header"/>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>数据表格</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">会员管理</a>
+                        </li>
+                        <li>
+                            <strong>参加高考时间列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>可编辑表格</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="table_data_tables.html#">选项1</a>
+                                        </li>
+                                        <li><a href="table_data_tables.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <script>
+                                function fnClickAddRow() {
+                                    var url="{:U('Gyear/add')}";
+                                    location.href=url;
+                                }
+                            </script>
+                            <div class="ibox-content">
+                                <div class="">
+                                    <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">添加时间</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>基本示例 <small>使用Font Awesome图标</small></h5>
+                                            <div class="ibox-tools">
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                                <a class="close-link">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <div id="jstree1">
+                                                <ul>
+                                                    <li class="jstree-open">课程分类列表
+                                                        <ul>
+                                                            <li>css
+                                                                <ul>
+                                                                    <li>animate.css</li>
+                                                                    <li data-jstree='{"type":"css"}'>bootstrap.css</li>
+                                                                    <li data-jstree='{"type":"css"}'>style.css</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>email-templates
+                                                                <ul>
+                                                                    <li data-jstree='{"type":"html"}'>action.html</li>
+                                                                    <li data-jstree='{"type":"html"}'>alert.html</li>
+                                                                    <li data-jstree='{"type":"html"}'>billing.html</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>fonts
+                                                                <ul>
+                                                                    <li data-jstree='{"type":"svg"}'>glyphicons-halflings-regular.eot</li>
+                                                                    <li data-jstree='{"type":"svg"}'>glyphicons-halflings-regular.svg</li>
+                                                                    <li data-jstree='{"type":"svg"}'>glyphicons-halflings-regular.ttf</li>
+                                                                    <li data-jstree='{"type":"svg"}'>glyphicons-halflings-regular.woff</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li class="jstree-open">img
+                                                                <ul>
+                                                                    <li data-jstree='{"type":"img"}'>profile_small.jpg</li>
+                                                                    <li data-jstree='{"type":"img"}'>angular_logo.png</li>
+                                                                    <li class="text-navy" data-jstree='{"type":"img"}'>html_logo.png</li>
+                                                                    <li class="text-navy" data-jstree='{"type":"img"}'>mvc_logo.png</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li class="jstree-open">js
+                                                                <ul>
+                                                                    <li data-jstree='{"type":"js"}'>hplus.js</li>
+                                                                    <li data-jstree='{"type":"js"}'>bootstrap.js</li>
+                                                                    <li data-jstree='{"type":"js"}'>jquery-2.1.1.js</li>
+                                                                    <li data-jstree='{"type":"js"}'>jquery-ui.custom.min.js</li>
+                                                                    <li class="text-navy" data-jstree='{"type":"js"}'>jquery-ui-1.10.4.min.js</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li data-jstree='{"type":"html"}'>affix.html</li>
+                                                            <li data-jstree='{"type":"html"}'>dashboard.html</li>
+                                                            <li data-jstree='{"type":"html"}'>buttons.html</li>
+                                                            <li data-jstree='{"type":"html"}'>calendar.html</li>
+                                                            <li data-jstree='{"type":"html"}'>contacts.html</li>
+                                                            <li data-jstree='{"type":"html"}'>css_animation.html</li>
+                                                            <li class="text-navy" data-jstree='{"type":"html"}'>flot_chart.html</li>
+                                                            <li class="text-navy" data-jstree='{"type":"html"}'>google_maps.html</li>
+                                                            <li data-jstree='{"type":"html"}'>icons.html</li>
+                                                            <li data-jstree='{"type":"html"}'>inboice.html</li>
+                                                            <li data-jstree='{"type":"html"}'>login.html</li>
+                                                            <li data-jstree='{"type":"html"}'>mailbox.html</li>
+                                                            <li data-jstree='{"type":"html"}'>profile.html</li>
+                                                            <li class="text-navy" data-jstree='{"type":"html"}'>register.html</li>
+                                                            <li data-jstree='{"type":"html"}'>timeline.html</li>
+                                                            <li data-jstree='{"type":"html"}'>video.html</li>
+                                                            <li data-jstree='{"type":"html"}'>widgets.html</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+          <include file="Public/footer"/>

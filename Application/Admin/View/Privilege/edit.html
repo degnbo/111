@@ -1,0 +1,94 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">EBAC管理</a>
+            </li>
+            <li>
+                <strong>权限修改</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Privilege/lis')}";
+                            location.href=url;
+                        }
+                    </script>
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">权限列表</a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form role="form" id="form" action="{:U('Privilege/edit',array('id'=>I('get.id')))}" method="post">
+                        <div class="form-group">
+                            <label>上级权限</label>
+                            <select name="pid">
+                                <option value="0">顶级权限</option>
+                                <?php foreach ($dlist as $k => $v): ?>
+                                <?php if(in_array($v['id'], $children)) continue ; ?>
+                                <option <?php if($v['id'] == $vo['pid']): ?>selected="selected"<?php endif; ?> value="<?php echo $v['id']; ?>">
+                                <?php echo str_repeat('--', $v['level']*2).$v['pri_name']; ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class='error'style="position:relative;left:150px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>权限名称</label>
+                            <input type="text" placeholder="请输入权限名称" datatype="*1-20"
+                                   name="pri_name" class="form-control" value="{$vo.pri_name}"
+                                   nullmsg="请输入权限名称" errormsg="长度不能超过20" datatype="*"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>权限路径</label>
+                            <input type="text" placeholder="请输入路径用/分开如Login/index顶级权限用admin"
+                                   class="form-control" name="pri_url" datatype="*1-30"
+                                    value="{$vo.pri_url}">
+                            <div class='error'style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>数字越小模块越靠前</label>
+                            <input type="text" placeholder="请输入数字" class="form-control"
+                                    name="sort_num" datatype="n" value="{$vo.sort_num}" />
+                            <div class='error'style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<script>
+    $(function(){
+        //alert('fs');
+    })
+    $("#form").Validform({
+        tiptype:function(msg,o,cssctl) {
+            if (!o.obj.is("form")) {
+                var objtip = o.obj.next('div.error');
+                cssctl(objtip, o.type);
+                objtip.text(msg);
+            }
+        }
+    })
+</script>
+<include file="Public/footer"/>

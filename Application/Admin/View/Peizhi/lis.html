@@ -1,0 +1,126 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<script src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">系统配置</a>
+            </li>
+            <li>
+                <strong>配置信息</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <div class="">
+                        <a  href="javascript:void(0)" class="btn btn-primary ">配置信息</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Peizhi/lis',array('id'=>$list['id']))}" method="post" enctype="multipart/form-data">
+                        <!--<div style="width:860px;">
+                            <label>配置logo展示</label>
+                            <if condition="$list">
+                                <img src="__PUBLIC__/Uploads/{$list.logo}"
+                                        width="200px" height="60px"/>
+                            </if>
+                            <input type="file" name="myfile" nullmsg="请选择"
+                                <if condition="$list eq ''">datatype="*" </if> />
+                                <div class="error"
+                                     style="position:relative;left:620px;top:-25px"></div>
+                        </div>
+                        <div style="width:860px;">
+                            <label>logo下面的小标题</label>
+                            <input type="text" name="smtitle"
+                                   datatype="*1-100" value="{$list.smtitle}"
+                                   nullmsg="请输入小标题" errormsg="长度不能超过100"
+                                   placeholder="请输入小标题" class="form-control">
+                            <div class="error"
+                                 style="position:relative;left:620px;top:-25px"></div>
+                        </div>
+                        <div style="width:860px;">
+                            <label>网站标题</label>
+                            <input type="text" name="title"
+                                   datatype="*1-100" value="{$list.title}"
+                                   nullmsg="请输入标题" errormsg="长度不能超过100"
+                                   placeholder="请输入标题" class="form-control">
+                            <div class="error"
+                                 style="position:relative;left:620px;top:-25px"></div>
+                        </div>
+                        <div style="width:860px;">
+                            <label>网站描述</label>
+                            <input type="text" name="des"
+                                   datatype="*1-100"value="{$list.des}"
+                                   nullmsg="请输入网站描述" errormsg="长度不能超过100"
+                                   placeholder="请输入网站描述" class="form-control">
+                            <div class="error"
+                                 style="position:relative;left:620px;top:-25px"></div>
+                        </div>
+                        <div style="width:860px;">
+                            <label>网站关键字</label>
+                            <input type="text" name="keywords"
+                                   datatype="*1-50" value="{$list.keywords}"
+                                   nullmsg="请输入网站关键字" errormsg="长度不能超过50"
+                                   placeholder="请输入网站关键字" class="form-control">
+                            <div class="error" style="position:relative;left:620px;top:-25px"></div>
+                        </div>-->
+                        <div style="width:860px;">
+                            <label>活动押金</label>
+                            <input type="text" name="yajin"
+                                   datatype="n" value="{$list.yajin}"
+                                   nullmsg="请输入活动押金" errormsg="请填写数字"
+                                   placeholder="请输入活动押金" class="form-control">
+                            <div class="error" style="position:relative;left:620px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>关于OHO</label><br>
+                            <textarea name="content" cols="50" rows="5" style="width:1000px;height:500px">{:html_entity_decode($list['content'])}</textarea>
+                             <!--引入kindeditor编辑器-->
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+                            <script type="text/javascript">
+                                var editor;
+                                KindEditor.ready(function(K) {
+                                    editor = K.create('textarea[name="content"]', {
+                                        allowFileManager : true,
+                                        afterBlur : function(){
+                                            //编辑器失去焦点时直接同步，可以取到值
+                                            this.sync();
+                                        }
+                                    });
+                                });
+                            </script>
+                            <!--引入kindeditor编辑器-->
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="{$list.id}"/>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>

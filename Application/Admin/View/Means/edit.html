@@ -1,0 +1,153 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">会员管理</a>
+            </li>
+            <li>
+                <strong>修改会员</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <script>
+                    function fnClickAddRow() {
+                        var url="{:U('Member/lis')}";
+                        location.reload();
+                        location.href=url;
+                    }
+                    $(function(){
+                    })
+                </script>
+                <div class="ibox-title">
+                    <h5>表单验证</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">详情列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Means/edit',array('mid'=>I('get.mid')))}" method="post">
+                        <!--<div class="form-group">
+                            <label>会员职称</label>
+                            <input type="text" placeholder="请输职称" datatype="*1-100"
+                                   name="major" class="form-control" value="{$vo.major}"
+                                   nullmsg="请输入信息" errormsg="长度不能超过100"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>类型名称</label>
+                            <select name="type_id" class="form-control">
+                                <option value="">选择报考班级地点</option>
+                                <foreach name="tlist" item="va">
+                                    <option value="{$va.id}" <if condition="$tid eq $va['id']">selected</if>>
+                                    {$va.level|str_repeat="----",###}{$va.tname}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                        <input type="hidden" value="{:I('get.mid')}" name="member_id" />
+                        <div class="form-group">
+                            <label>会员简介</label><br>
+                            <textarea name="des" datatype="*1-300" id="des" rows="10" cols="50" class="form-control">{$vo['des']}</textarea>
+
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>关注量</label>
+                            <input type="text" placeholder="请输关注量" datatype="n"
+                                   name="view_num" class="form-control" value="{$vo.view_num}"
+                                   nullmsg="请输入信息" errormsg="长度不能超过20" />
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>会员描述</label><br>
+                            <textarea name="member_des" id="member_des">{$vo['member_des']}</textarea>
+
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+        <script>
+            $(function(){
+                //alert('ok');
+                $(":checkbox").click(function(){
+
+                    // 先获取当前这个按钮的level
+                    var cur_level = $(this).attr('level');
+                    //jquery1.4没有这个属性
+                    if($(this).prop("checked"))
+                    {
+                        var tmp_level = cur_level;
+                        /*********** 所有父权限也选中 ************/
+                            // 循环所有前面的
+                        $(this).prevAll(":checkbox").each(function(k,v){
+                            // 如果权限高于它就选中
+                            if($(v).attr('level') < tmp_level)
+                            {
+                                $(v).prop("checked", "checked");
+                                tmp_level--;  // 找到之后向上提一级
+                            }
+                        });
+                        /*********** 所有子权限也选中 ************/
+                        $(this).nextAll(":checkbox").each(function(k,v){
+                            // 如果权限高于它就选中
+                            if($(v).attr('level') > cur_level)
+                                $(v).prop("checked", "checked");
+                            else
+                                return false;
+                        });
+                    }
+                    else
+                    {
+                        $(this).nextAll(":checkbox").each(function(k,v){
+                            // 如果权限高于它就选中
+                            if($(v).attr('level') > cur_level)
+                                $(v).removeAttr("checked");
+                            else
+                                return false;
+                        });
+                    }
+                });
+            })
+            $("#form").Validform({
+                tiptype:function(msg,o,cssctl) {
+                    if (!o.obj.is("form")) {
+                        var objtip = o.obj.next('div.error');
+                        cssctl(objtip, o.type);
+                        objtip.text(msg);
+                    }
+                }
+            })
+        </script>
+<include file="Public/footer"/>
+<!--引入UMeditor编辑器-->
+<link href="__PUBLIC__/umeditor1_2_2-utf8-php/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    UM.getEditor("member_des", {
+        initialFrameWidth : "150%",
+        initialFrameHeight : "500"
+    });
+</script>

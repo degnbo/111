@@ -1,0 +1,81 @@
+<include file="Public/header"/>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>数据表格</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">会员管理</a>
+                        </li>
+                        <li>
+                            <strong>参加高考时间列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <div class="">
+                                    <a  href="{:U('Ctype/add')}" class="btn btn-primary ">添加分类</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <div class="ibox-tools">
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                                <a class="close-link">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <div id="jstree1">
+                                                <ul>
+                                                    <li class="jstree-open" >课程分类列表
+                                                        <ul>
+                                                            <foreach name="tlist" item="vo">
+                                                                <li style="list-style: none;line-height: 24px;width: 40%">{$vo.tname}
+                                                                    <span style="float: right"><a href="{:U('Ctype/edit',array('id'=>$vo['id']))}">
+                                                                        <img src="__PUBLIC__/Admin/img/update.png" width="20px"/></a>
+                                                                            <a  style="margin-left: 10px" onclick="return confirm('你确定要删除')" href="{:U('Ctype/delete',array('id'=>$vo['id']))}">
+                                                                                <img src="__PUBLIC__/Admin/img/del.png"/></a></span>
+                                                                    <ul>
+                                                                        <foreach name="vo.xq" item="va">
+                                                                            <li style="list-style: none;line-height: 24px"><img src="__PUBLIC__/Admin/img/subTypeBg.gif" />{$va.tname}
+                                                                            <span style="float: right"><a href="{:U('Ctype/edit',array('id'=>$va['id']))}">
+                                                                                <img src="__PUBLIC__/Admin/img/update.png" width="20px"/></a>
+                                                                            <a  style="margin-left: 10px" onclick="return confirm('你确定要删除')" href="{:U('Ctype/delete',array('id'=>$va['id']))}">
+                                                                                <img src="__PUBLIC__/Admin/img/del.png"/></a></span>
+                                                                            </li>
+                                                                        </foreach>
+                                                                    </ul>
+                                                                </li>
+                                                            </foreach>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+          <include file="Public/footer"/>

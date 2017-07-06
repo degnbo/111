@@ -1,0 +1,141 @@
+<include file="Public/top"/>
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>栏目管理</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">栏目管理</a>
+            </li>
+            <li>
+                <strong>栏目列表修改</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Category/lis')}";
+                            location.reload();
+                            location.href=url;
+                        }
+                        $(function(){
+                        })
+                    </script>
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">栏目列表</a>
+                    </div>
+                    <form role="form" id="form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>栏目logo</label>
+                            <if condition="$vo.cate_logo neq ''">
+                                <img src="__PUBLIC__/Uploads/{$vo.cate_logo}" width="80px" height="30px"/>
+                            </if>
+                            <input type="file" class="form-control"name="myfile"/>
+                            <div class="error" style="position:relative;left:365px;top:-25px"><font color="red">*logo可上传，也可不上传</font></div>
+                        </div>
+                        <div class="form-group">
+                                <label>栏目名称</label>
+                                <input type="text"
+                                       value='{$vo.cate_name}'
+                                       name="cate_name"  datatype="*1-20"
+                                       nullmsg="请输入角色名称" errormsg="长度不能超过20"
+                                       placeholder="请输入栏目名称" class="form-control">
+                                <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>上级栏目</label>
+                            <select name="pid">
+                                <option value="0">顶级栏目</option>
+                                <foreach name="dlist" item="val">
+                                    <option value="{$val.id}" <if condition="$vo.pid eq $val['id']">selected</if>>
+                                    {$val.level|str_repeat="&nbsp;&nbsp;",###}{$val.cate_name}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>是否显示</label><br>
+                            <input type="radio" name="is_show" value="1" <if condition="$vo.is_show eq 1">checked</if>>是
+                            <input type="radio" name="is_show"   value="0" <if condition="$vo.is_show eq 0">checked</if>>否
+                        </div>
+                        <div class="form-group">
+                            <label>是否导航</label><br>
+                            <input type="radio" name="is_nav" value="1" <if condition="$vo.is_nav eq 1">checked</if>>是
+                            <input type="radio" name="is_nav"   value="0" <if condition="$vo.is_nav eq 0">checked</if>>否
+                        </div>
+						<div class="form-group">
+                            <label>栏目标题</label>
+                                <input type="text" name='cate_title' placeholder="栏目标题" class="form-control" <if condition="$vo.cate_des">value='{$vo.cate_title}'</if>  />
+                            <div class="error" style="position:relative;left:365px;top:-25px"><font color="red">*栏目标题可填，也可不填</font></div>
+                        </div>
+                        <div class="form-group">
+                            <label>栏目路径</label>
+                            <input type="text" name='link_url' placeholder="栏目路径"  <if condition="$vo.link_url">value='{$vo.link_url}'</if>  />
+                            <label><input style="margin-left: 30px;" type="checkbox" name="is_wl"  value="2"
+                                          <if condition="$vo.is_wl eq 2">checked</if>
+                            />
+                            <span style="color:blue">外链</span></label>
+                            <div class="error" style="position:relative;left:365px;top:-25px"><font color="red">*栏目路径可填，也可不填</font></div>
+                        </div>
+                        <div class="form-group">
+                            <label>栏目描述</label>
+                                <input type="text" name='cate_des' placeholder="栏目描述" class="form-control" <if condition="$vo.cate_des">value='{$vo.cate_des}'</if>  />
+                            <div class="error" style="position:relative;left:365px;top:-25px"><font color="red">*栏目描述可填，也可不填</font></div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label>排序数字</label>
+                            <input type="text"
+                                   name="sort_num"  datatype="n"
+                                   nullmsg="请输入排序数字"  value="{$vo.sort_num}" readonly
+                                   placeholder="请输入排序数字" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>栏目详情</label><br>
+                            <textarea name="content"  id="content">{:html_entity_decode($vo['content'])}</textarea>
+
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>
+<!--引入UMeditor编辑器-->
+<link href="__PUBLIC__/umeditor1_2_2-utf8-php/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    UM.getEditor("content", {
+        initialFrameWidth : "120%",
+        initialFrameHeight : "500",
+    });
+</script>

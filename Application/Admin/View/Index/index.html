@@ -1,0 +1,109 @@
+<include file="Public/header"/>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>php版本信息</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{:U('Index/index')}">后台管理</a>
+                        </li>
+                        <li>
+                            <strong>后台首页</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <span class="label label-primary pull-right">{$pageNum.zip}</span>
+                                <h5>访客</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <table style="width:300px;">
+                                    <tr>
+                                        <td>{$today}</td>
+                                        <td>{$yesterday}</td>
+                                        <td>{$total}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>今日</th>
+                                        <th>昨日</th>
+                                        <th>总浏览</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2" align="center">服务器信息</td>
+                                    </tr>
+                                    <tr>
+                                        <td>系统类型及版本号:</td>
+                                        <td><?php echo php_uname(); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Web服务器:</td>
+                                        <td><?php echo $_SERVER["SERVER_SOFTWARE"]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PHP版本:</td>
+                                        <td><?php echo PHP_VERSION; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MySQL版本:</td>
+                                        <td>
+                                            <?php
+										        mysql_connect('localhost','root','root');
+										        echo mysql_get_server_info();
+											  ?>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>服务器时间:</td>
+                                        <td><?php echo date("Y年m月d日 H:i:s",time()); ?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>服务器IP:</td>
+                                        <td><?php echo GetHostByName($_SERVER['SERVER_NAME']); ?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>服务器域名（主机名）:</td>
+                                        <td>
+                                            <?php echo $_SERVER["HTTP_HOST"]; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>服务器语言:</td>
+                                        <td><?php echo $_SERVER['HTTP_ACCEPT_LANGUAGE']; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>服务器Web端口:</td>
+                                        <td><?php echo $_SERVER['SERVER_PORT']; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>请求页面时通信协议的名称和版本:</td>
+                                        <td><?php echo $_SERVER['SERVER_PROTOCOL']; ?></td>
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+          <include file="Public/footer"/>

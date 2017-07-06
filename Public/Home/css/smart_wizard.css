@@ -1,0 +1,372 @@
+/*   
+  SmartWizard 2.0 plugin 
+  jQuery Wizard control Plugin
+  by Dipu
+  
+  http://www.techlaboratory.net
+  http://tech-laboratory.blogspot.com
+*/
+.pass_center{margin-bottom:30px !important;width: 100%;background:#fff;padding:25px 0;max-width: 1100px;margin:0 auto;}
+.pass_center h3{font-size: 28px;color: #333;}
+.step1{width: 35px;height:34px;background: url(../img/pass/pass1.jpg) no-repeat;}
+
+.swMain {
+  position:relative;
+  margin:0 auto;
+  padding:0;
+  border:0px solid #CCC;
+  overflow:visible;
+  
+}
+.swMain .stepContainer {
+  display:block;
+  position:relative;
+  margin:0;
+  padding:0;    
+  border:0px solid #CCC;    
+  overflow:hidden;
+  clear:both;
+  height:300px;
+}
+
+.swMain .stepContainer div.content {
+  display:block;
+  position:absolute;  
+  float:left;
+  margin:0;
+  padding:5px;
+  width: 400px;
+  height: 300px;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: 40px;
+  
+}
+
+.swMain div.actionBar {
+  display:block;
+  position:relative; 
+  clear:both;
+  height:40px;
+  text-align:left;
+  overflow:auto;    
+  z-index:88; 
+	width: 350px;
+	margin-left: -175px;
+	left: 50%;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+}
+
+.swMain .stepContainer .StepTitle {
+  display:block;
+  position:relative;
+  margin:0;   
+  border:1px solid #E0E0E0;
+  padding:5px;   
+  font:bold 16px Verdana, Arial, Helvetica, sans-serif; 
+  color:#5A5655;   
+  background-color:#E0E0E0;
+  clear:both;
+  text-align:left; 
+  z-index:88;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;    
+}
+.swMain ul.anchor {
+  position:relative;
+  display:block;
+  float:left;
+  list-style:none;
+  padding:0px;  
+  margin:10px 0;      
+  clear:both;
+  width:100%;
+  border:0px solid #CCCCCC;    
+  background:transparent; /*#EEEEEE */
+}
+.swMain ul.anchor li{ 
+  position:relative; 
+  display:block;
+  margin:0;
+  padding:0; 
+  border:0px solid #E0E0E0;      
+  float:left;
+  width:25%;
+  margin-right:5%;
+  cursor: pointer;
+}
+.swMain ul.anchor li span{cursor: pointer;}
+.swMain ul.anchor li a .stepNumber:hover{cursor: pointer;}
+.swMain ul.anchor li hr{margin-left: 25%;height: 3px;background: #b5b5b5;}
+/* Anchor Element Style */
+.swMain ul.anchor li:last-child{width:0;}
+.swMain ul.anchor li a {
+  display:block;
+  position:relative;
+  float:left;
+  margin:0;
+  padding:3px;
+  height:34px;
+  width:35px;
+  text-decoration:none;
+  outline-style:none;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  z-index:99;
+}
+.swMain ul.anchor li a .stepNumber{
+  position:relative;
+  width:35px;
+  font-size: 16px;
+  text-align:center;
+  padding-top:0;
+  line-height: 30px;
+  left:50%;
+  margin-left: -4px;
+ font-weight: bold;
+}
+.swMain ul.anchor li a .stepDesc{
+  position:relative;
+  display:block;
+  float:left;
+  text-align:left;
+  padding:5px;
+  color: #c0c0c0;
+  font-size: 15px;
+  width: 110px;
+  margin-left: -40px;
+  text-align: center;
+}
+.swMain ul.anchor li a .stepDesc small{
+  font:normal 12px Verdana, Arial, Helvetica, sans-serif;
+}
+.swMain ul.anchor li a.selected {
+  color:#F8F8F8;
+  background:url(../../img/pass/pass2.jpg) no-repeat center;  /* EA8511 */
+
+  cursor:text;
+  display: block;
+  
+}
+.swMain ul.anchor li a.selected span.stepDesc{color: #ff4400;}
+.swMain ul.anchor li a.selected:hover {
+  
+  cursor: pointer;
+  display: block;
+}
+
+.swMain ul.anchor li a.done { 
+  position:relative;
+  color:#FFF !important;  
+	background: url(../img/pass/pass2.jpg) no-repeat center;
+  z-index:99;
+ 
+}
+.swMain ul.anchor li a.done span:last-child{
+	 color: #ff4400;
+}
+
+.swMain ul.anchor li a.disabled {
+  color:#CCCCCC;  
+  background: url(../img/pass/pass1.jpg) no-repeat center;
+  color: #fff; 
+}
+.swMain ul.anchor li a.disabled:hover {
+  color:#fff;   
+}
+
+.swMain ul.anchor li a.error {
+  color:#6c6c6c !important;  
+  background:#f08f75 !important;
+  border:1px solid #fb3500 !important;      
+}
+.swMain ul.anchor li a.error:hover {
+  color:#000 !important;       
+}
+
+.swMain .buttonNext {
+  display:block;
+  float:right;
+  margin:5px 3px 0 3px;
+  padding:5px;
+  text-decoration:none;
+  text-align:center;
+  font:bold 13px Verdana, Arial, Helvetica, sans-serif;
+  width:100px;
+  color:#FFF;
+  outline-style:none;
+  background-color:#f33415;
+  border:1px solid #f33415;
+  -moz-border-radius:5px; 
+  -webkit-border-radius:5px;    
+}
+.swMain .buttonDisabled {
+  color:#F8F8F8  !important;
+  background-color:#CCCCCC !important;
+  border:1px solid #CCCCCC  !important;
+  cursor:text;    
+}
+.swMain .buttonPrevious {
+  display:block;
+  float:right;
+  margin:5px 3px 0 3px;
+  padding:5px;
+  text-decoration:none;
+  text-align:center;
+  width:100px;
+  color:#FFF;
+  outline-style:none;
+  background-color:#f33415;
+  border:1px solid #f33415;
+  -moz-border-radius:5px; 
+  -webkit-border-radius:5px;    
+}
+.swMain .buttonFinish {
+  display:block;
+  float:right;
+  margin:5px 10px 0 3px;
+  padding:5px;
+  text-decoration:none;
+  text-align:center;
+  font:bold 13px Verdana, Arial, Helvetica, sans-serif;
+  width:100px;
+  color:#FFF;
+  outline-style:none;
+  background-color:#f33415;
+  border:1px solid #f33415;
+  -moz-border-radius:5px; 
+  -webkit-border-radius:5px;    
+}
+
+/* Form Styles */
+
+.txtBox {
+  border:1px solid #CCCCCC;
+  color:#5A5655;
+  font:13px Verdana,Arial,Helvetica,sans-serif;
+  padding:2px;
+  width:430px;
+}
+.txtBox:focus {
+  border:1px solid #EA8511;
+}
+
+.swMain .loader {
+  position:relative;  
+  display:none;
+  float:left;  
+  margin:2px 0 0 2px;
+  padding:8px 10px 8px 40px;
+  border:1px solid #FFD700; 
+  font:bold 13px Verdana, Arial, Helvetica, sans-serif; 
+  color:#5A5655;       
+  background:#FFF url(../images/loader.gif) no-repeat 5px;  
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  z-index:998;
+}
+.swMain .msgBox {
+  position:relative;  
+  display:none;
+  float:left;
+  margin:4px 0 0 5px;
+  padding:5px;
+  border:1px solid #FFD700; 
+  background-color:#FFFFDD;  
+  font:normal 12px Verdana, Arial, Helvetica, sans-serif; 
+  color:#5A5655;         
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  z-index:999;
+  min-width:200px;  
+}
+.swMain .msgBox .content {
+  font:normal 12px Verdana,Arial,Helvetica,sans-serif;
+  padding:0px;
+  float:left;
+}
+.swMain .msgBox .close {
+  border:1px solid #CCC;
+  border-radius:3px;
+  color:#CCC;
+  display:block;
+  float:right;
+  margin:0 0 0 5px;
+  outline-style:none;
+  padding:0 2px 0 2px;
+  position:relative;
+  text-align:center;
+  text-decoration:none;
+}
+.swMain .msgBox .close:hover{
+  color:#EA8511;
+  border:1px solid #EA8511;  
+}
+.step_div i{width: 55px;height: 20px;margin-right:5px;display: block;border-radius: 100%;background: url(../img/pass/img9.jpg) no-repeat center;float: left;}
+.step_div{line-height: 20px;font-size: 16px;color: #666;}
+.step_ul li label{font-size: 14px;color: #434343;line-height: 40px;}
+.step_ul li label span{color: #ff0000;margin-right: 5px;padding-top:3px;display: block;float: left;}
+.step_ul li input{width: 300px;padding-left:10px;height: 38px;border: 1px solid #ccc;}
+.step_ul{margin-top: 15px;}
+.step_ul li{margin-top:10px;}
+.step_li img{float: left;margin-left:65px;}
+.step_li span{float:left;margin-left:10px;line-height:65px;font-size: 13px;color: #29a0db;cursor: pointer;}
+.step_div2 img{margin-top:5px;display: block;float: left;margin-right: 20px;}
+.step_div2 div{float: left;}
+.step_div2 div p{line-height:30px;font-size: 14px;color: #2b2b2b;margin-bottom: 0;}
+.step_div2 a{color: #b71a00;font-size: 14px;}
+.step_but{width: 200px;height: 40px;background: #f33516;border: 1px solid #db280b;font-size: 16px;color: #fff;margin-top: 50px;margin-left: 70px;border-radius: 5px;}
+.step_div2{margin-top: 30px;}
+.step_xiu h3{padding-left:25%;height:100px;border-bottom:1px dashed #ccc;font-size: 24px;color: #e6590c;line-height: 63px;}
+.step_xiu h3 img{margin-right: 35px;}
+.step_xiu p{font-size: 18px;line-height:90px;color: #000;text-align: center;}
+.step_xiu a{color: #2ca4de;}
+@media only screen and (max-width:1000px ) {
+	.swMain ul.anchor{width: 90%;margin-left: 5%;}
+	.pass_center h3{padding-left:2%;}
+}
+@media only screen and (min-width:769px ) {
+	
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+	.swMain{display: none;}
+	.header{width: 100%;}
+	.pass_center h3{font-size: 22px;}
+	.jietuo_foot {display: none;}
+}
+/*移动端*/
+.step_yidong{width: 95%;margin:0 auto;}
+.step_div1 li{width: 100%;height: 50px;margin-bottom: 20px;}
+.step_div1 li input{width:80%;height:49px;}
+.step_div1 .li_child img{width:100px;float: left;}
+.step_div1 .li_child span{float: left;color: #29a0db;font-size:12px;line-height:30px;margin-left:10px;cursor: pointer;}
+.step_div1 .li_child{width:80%;margin-top: 30px;border: 0;}
+.step_yidong>div>input{width: 60%;height: 35px;background: #f33515;margin:0 auto;font-size: 14px;color: #fff;border: 1px solid #f33515;float: none;margin-left: 20%;border-radius: 5px;margin-bottom:10px;}
+.step_zhuy{color:#999;font-size: 12px;margin-top: 30px;}
+.step_zhuy i{color: #f23919;display: block;background: url(../img/pass/img14.jpg) no-repeat left;float: left;padding-left:15px;background-size:20%;}
+.step_zhuy span{color: #00ABE3;}
+.step_img1 img{width: 130px;display: block;margin:0 auto;}
+.step_p{font-size: 16px;text-align: center;color:#e6590c;}
+.step_p1{font-size: 12px;text-align: center;}
+.step_p1 a{color: #00ABE3;}
+.step_div1 li>span{float: left;width:20%;line-height:50px;}
+.step_div1 input{float: left;}
+.li_child span{width: auto !important;}
+.li_child{padding-left: 80px;}
+.step_ul label{width:25%;}
+.step_div p{font-size: 12px;}
+.step_ul input{width:75% !important;text-align: left;}
+.step_yidong>div{width: 100%;max-width: 400px;margin:0 auto;}
+.step_yidong{border: 1px solid #ccc;padding: 20px;margin-top: 20px;height: auto;min-height: 270px;}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+	.step_ul li{width: 98%;}
+	.step_ul li input{width:80%;}
+	.li_child{padding-left: 10%;}
+	.step_ul label{width:35% !important;}
+	.step_ul input{width:65% !important;}
+}
+@media only screen and (min-width: 320px) and (max-width: 400px) {
+	.step_div1 li>span{float: left;width:30%;line-height:50px;}
+.step_div1 input{float: left;width:70% !important;}
+}

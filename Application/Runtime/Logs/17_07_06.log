@@ -1,0 +1,1231 @@
+[ 2017-07-06T00:30:55+08:00 ] 103.83.60.152 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000381s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000850s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000514s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000067s ]
+
+[ 2017-07-06T00:30:56+08:00 ] 103.83.60.152 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000348s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000847s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000464s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000050s ]
+
+[ 2017-07-06T00:30:56+08:00 ] 103.83.60.152 /index.php/Home/Index/login?code=011EUFq12sz7C01mzSo12Qlvq12EUFqQ
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000374s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000843s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T00:30:56+08:00 ] 103.83.60.152 /index.php/Home/Index/get_type_list?type_id=0&lat=0&lng=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000369s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000203s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000852s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000526s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499272256 ) ORDER BY a.id asc  [ RunTime:0.000420s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000386s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000426s ]
+
+[ 2017-07-06T00:31:01+08:00 ] 103.83.60.152 /index.php/Index/get_user
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000490s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000996s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000466s ]
+SQL: SELECT `logo`,`name`,`id` FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0R5fDqxn2464JR7rwFHvzYc' ) LIMIT 1   [ RunTime:0.000158s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000420s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000462s ]
+
+[ 2017-07-06T00:31:04+08:00 ] 103.83.60.152 /index.php/Index/get_user_list/id/undefined
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000379s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000852s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000432s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `id` = 0 ) LIMIT 1   [ RunTime:0.000156s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000410s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000449s ]
+
+[ 2017-07-06T00:31:07+08:00 ] 103.83.60.152 /index.php/Index/get_user
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000373s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000855s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000448s ]
+SQL: SELECT `logo`,`name`,`id` FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0R5fDqxn2464JR7rwFHvzYc' ) LIMIT 1   [ RunTime:0.000051s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000391s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000431s ]
+
+[ 2017-07-06T00:31:10+08:00 ] 103.83.60.152 /index.php/Index/my_join_active_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000339s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000188s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003581s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000444s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0R5fDqxn2464JR7rwFHvzYc' ) LIMIT 1   [ RunTime:0.000642s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000468s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000509s ]
+
+[ 2017-07-06T00:31:10+08:00 ] 103.83.60.152 /index.php/Index/my_pub_active_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000347s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000208s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000840s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.001296s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0R5fDqxn2464JR7rwFHvzYc' ) LIMIT 1   [ RunTime:0.000065s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000402s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000448s ]
+
+[ 2017-07-06T00:31:12+08:00 ] 103.83.60.152 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000376s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000853s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000901s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000070s ]
+
+[ 2017-07-06T00:31:12+08:00 ] 103.83.60.152 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000358s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000850s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000436s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000052s ]
+
+[ 2017-07-06T00:31:13+08:00 ] 103.83.60.152 /index.php/Home/Index/login?code=0019OFnQ09w6Gb2uxupQ0zoPnQ09OFnI
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000387s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000877s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T00:31:13+08:00 ] 103.83.60.152 /index.php/Home/Index/get_type_list?type_id=0&lat=0&lng=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000383s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000862s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000493s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499272273 ) ORDER BY a.id asc  [ RunTime:0.000437s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000456s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000495s ]
+
+[ 2017-07-06T00:35:52+08:00 ] 103.83.60.152 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000380s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000860s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000566s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000084s ]
+
+[ 2017-07-06T00:50:29+08:00 ] 117.157.160.85 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000382s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000881s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000490s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000067s ]
+
+[ 2017-07-06T00:50:29+08:00 ] 117.157.160.85 /index.php/Home/Index/login?code=081vh49k008YKk1U917k0Si89k0vh49z
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000346s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000188s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000822s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T00:50:31+08:00 ] 117.157.160.85 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000373s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000871s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000465s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000052s ]
+
+[ 2017-07-06T00:50:31+08:00 ] 117.157.160.85 /index.php/Home/Index/get_type_list?type_id=0&lat=35.21333&lng=105.2138
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000674s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000350s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001449s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000754s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((35.21333*PI()/180-a.lat*PI()/180)/2),2)+COS(35.21333*PI()/180)*COS(lat*PI()/180)*POW(SIN((105.2138*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499273431 ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000626s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000639s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000699s ]
+
+[ 2017-07-06T00:50:34+08:00 ] 117.157.160.85 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000362s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000206s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000471s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0XDbEL6CbK_bUEHmExEC8xA' ) LIMIT 1   [ RunTime:0.000175s ]
+SQL: INSERT INTO `beidou_member` (`openid`,`name`,`logo`,`sex`,`type`,`addtime`) VALUES ('o8wkZ0XDbEL6CbK_bUEHmExEC8xA','℃','/Public/tempfile/forver/20170706/1499273434595d1.png',1,'1',1499273434) [ RunTime:0.000404s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000529s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000576s ]
+
+[ 2017-07-06T00:50:38+08:00 ] 117.157.160.85 /index.php/Home/Index/get_type_list?type_id=3&lat=35.21333&lng=105.2138
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000350s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000210s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000846s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000527s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((35.21333*PI()/180-a.lat*PI()/180)/2),2)+COS(35.21333*PI()/180)*COS(lat*PI()/180)*POW(SIN((105.2138*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499273438 ) AND ( a.type_id = '3' ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000479s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000399s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000437s ]
+
+[ 2017-07-06T01:01:37+08:00 ] 101.45.196.154 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000366s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000854s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000491s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000067s ]
+
+[ 2017-07-06T01:01:37+08:00 ] 101.45.196.154 /index.php/Home/Index/login?code=0031MndS0rJ3Za2HCA9S06SbdS01MndN
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.003389s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003861s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T01:01:38+08:00 ] 101.45.196.154 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000393s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000260s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000952s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000532s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000052s ]
+
+[ 2017-07-06T01:01:38+08:00 ] 101.45.196.154 /index.php/Home/Index/get_type_list?type_id=0&lat=31.27158&lng=121.511
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000377s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000484s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((31.27158*PI()/180-a.lat*PI()/180)/2),2)+COS(31.27158*PI()/180)*COS(lat*PI()/180)*POW(SIN((121.511*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499274098 ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000461s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000408s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000446s ]
+
+[ 2017-07-06T01:01:40+08:00 ] 101.45.196.154 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000444s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000210s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000938s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000475s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0SRubq8A3JVMWP9AwoppwMU' ) LIMIT 1   [ RunTime:0.000164s ]
+SQL: INSERT INTO `beidou_member` (`openid`,`name`,`logo`,`sex`,`type`,`addtime`) VALUES ('o8wkZ0SRubq8A3JVMWP9AwoppwMU','L梓祥','/Public/tempfile/forver/20170706/1499274100595d1.png',1,'1',1499274100) [ RunTime:0.000304s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000498s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000550s ]
+
+[ 2017-07-06T01:21:02+08:00 ] 123.59.146.153 /
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000371s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000838s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000374s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000420s ]
+
+[ 2017-07-06T02:32:54+08:00 ] 183.214.91.3 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000366s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000225s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000873s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000513s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000066s ]
+
+[ 2017-07-06T02:32:55+08:00 ] 183.214.91.3 /index.php/Home/Index/login?code=003FoDkf1RNmdx0TUNif18xNkf1FoDkK
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000363s ]
+INFO: Run Behavior\CronRun [ RunTime:0.003152s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003890s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T02:32:56+08:00 ] 183.214.91.3 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000370s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000273s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000932s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000498s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000064s ]
+
+[ 2017-07-06T02:32:57+08:00 ] 183.214.91.3 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000369s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000198s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000461s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0ah772KRavOm_ZcqwukGFmc' ) LIMIT 1   [ RunTime:0.000185s ]
+SQL: INSERT INTO `beidou_member` (`openid`,`name`,`logo`,`sex`,`type`,`addtime`) VALUES ('o8wkZ0ah772KRavOm_ZcqwukGFmc','A糖水鱼丸💂','/Public/tempfile/forver/20170706/1499279577595d3.png',1,'1',1499279577) [ RunTime:0.000323s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000489s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000537s ]
+
+[ 2017-07-06T02:32:58+08:00 ] 183.214.91.3 /index.php/Home/Index/login?code=013uhqFS11mSda1WuWHS1j6GFS1uhqFE
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000556s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000278s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001277s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T02:32:58+08:00 ] 183.214.91.3 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000344s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000189s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000850s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000430s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0ah772KRavOm_ZcqwukGFmc' ) LIMIT 1   [ RunTime:0.000205s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000388s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000429s ]
+
+[ 2017-07-06T02:33:03+08:00 ] 183.214.91.3 /index.php/Index/checkphone
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000366s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001094s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000450s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0ah772KRavOm_ZcqwukGFmc' ) LIMIT 1   [ RunTime:0.000066s ]
+
+[ 2017-07-06T02:33:05+08:00 ] 183.214.91.3 /index.php/Index/my_pub_active_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000341s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000203s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000841s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000464s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0ah772KRavOm_ZcqwukGFmc' ) LIMIT 1   [ RunTime:0.000063s ]
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000358s ]
+SQL: SELECT `acode`,`tname`,`is_pay`,`id`,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `member_id` = 1389 ) ORDER BY addtime desc  [ RunTime:0.000265s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000402s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000441s ]
+
+[ 2017-07-06T02:33:05+08:00 ] 183.214.91.3 /index.php/Index/my_join_active_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000340s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000189s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000808s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000340s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0ah772KRavOm_ZcqwukGFmc' ) LIMIT 1   [ RunTime:0.000060s ]
+SQL: SHOW COLUMNS FROM `beidou_order` [ RunTime:0.000329s ]
+SQL: SELECT a.id,a.is_comment,a.pay_status,b.acode,b.start_time,FROM_UNIXTIME(b.start_time,"%Y-%m-%d %H:%i") starttime,b.tname,a.active_id FROM beidou_order a left join beidou_active b on a.active_id=b.id  WHERE ( a.member_id = '1389' ) ORDER BY a.addtime desc  [ RunTime:0.000233s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 1262 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000426s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000467s ]
+
+[ 2017-07-06T02:33:06+08:00 ] 183.214.91.3 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000367s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000201s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000849s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000499s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000077s ]
+
+[ 2017-07-06T02:33:06+08:00 ] 183.214.91.3 /index.php/Home/Index/login?code=013tbiKZ0hQBi22AilMZ0tFgKZ0tbiKt
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000342s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000204s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000836s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T02:33:07+08:00 ] 183.214.91.3 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000344s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000189s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000828s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000455s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0ah772KRavOm_ZcqwukGFmc' ) LIMIT 1   [ RunTime:0.000078s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000402s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000442s ]
+
+[ 2017-07-06T02:33:09+08:00 ] 183.214.91.3 /index.php/Home/Index/get_active_detial
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000376s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000195s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000858s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000514s ]
+SQL: SELECT a.*,b.name username,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( a.id = '138' ) LIMIT 1   [ RunTime:0.000347s ]
+SQL: SHOW COLUMNS FROM `beidou_order` [ RunTime:0.000319s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `beidou_order` WHERE ( `pay_status` IN ('1','2','3','5','6') ) AND ( `active_id` = 138 ) LIMIT 1   [ RunTime:0.000050s ]
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000313s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0ah772KRavOm_ZcqwukGFmc' ) LIMIT 1   [ RunTime:0.000058s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000395s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000436s ]
+
+[ 2017-07-06T02:33:10+08:00 ] 183.214.91.3 /index.php/Home/Index/login?code=013gZAI8272IUP0lgvL82qgBI82gZAI2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000348s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000832s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T02:33:10+08:00 ] 183.214.91.3 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000350s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000219s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000858s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000462s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0ah772KRavOm_ZcqwukGFmc' ) LIMIT 1   [ RunTime:0.000064s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000389s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000429s ]
+
+[ 2017-07-06T02:33:12+08:00 ] 183.214.91.3 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000366s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000870s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000508s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000074s ]
+
+[ 2017-07-06T02:33:13+08:00 ] 183.214.91.3 /index.php/Home/Index/login?code=013fnVO50zpX0H184UR506NhP50fnVOf
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000391s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000878s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T05:22:39+08:00 ] 117.152.225.160 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000374s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000849s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000510s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000066s ]
+
+[ 2017-07-06T05:22:39+08:00 ] 117.152.225.160 /index.php/Home/Index/login?code=0038fbJU1blKxU0BwDJU18WTIU18fbJg
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000347s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000189s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000816s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T05:22:42+08:00 ] 117.152.225.160 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000352s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000858s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000503s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000068s ]
+
+[ 2017-07-06T05:22:45+08:00 ] 117.152.225.160 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000369s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000841s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000427s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0VpblzRuAcYr2QSGd0Eom8w' ) LIMIT 1   [ RunTime:0.000173s ]
+SQL: INSERT INTO `beidou_member` (`openid`,`name`,`logo`,`sex`,`type`,`addtime`) VALUES ('o8wkZ0VpblzRuAcYr2QSGd0Eom8w','Ao~达芬尼斯洋洋','/Public/tempfile/forver/20170706/1499289765595d5.png',1,'1',1499289764) [ RunTime:0.000248s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000410s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000453s ]
+
+[ 2017-07-06T05:22:45+08:00 ] 117.152.225.160 /index.php/Home/Index/login?code=003IAW0K1nxnn70NJ31K16mZ0K1IAW0P
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000391s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000864s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T05:22:45+08:00 ] 117.152.225.160 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000342s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000221s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000848s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000455s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0VpblzRuAcYr2QSGd0Eom8w' ) LIMIT 1   [ RunTime:0.000199s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000389s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000428s ]
+
+[ 2017-07-06T05:22:54+08:00 ] 117.152.225.160 /index.php/Home/Index/login?code=013azAx90tsZdu1gNBz90tlAx90azAxi
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000345s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000212s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000838s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T05:22:54+08:00 ] 117.152.225.160 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000348s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000817s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000504s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000067s ]
+
+[ 2017-07-06T05:22:54+08:00 ] 117.152.225.160 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000369s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000840s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000471s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0VpblzRuAcYr2QSGd0Eom8w' ) LIMIT 1   [ RunTime:0.000061s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000384s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000423s ]
+
+[ 2017-07-06T05:22:59+08:00 ] 117.152.225.160 /index.php/Index/get_user
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000362s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000832s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000432s ]
+SQL: SELECT `logo`,`name`,`id` FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0VpblzRuAcYr2QSGd0Eom8w' ) LIMIT 1   [ RunTime:0.000168s ]
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000367s ]
+SQL: SELECT `acode`,`tname`,`is_pay`,`id`,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `member_id` = 1390 ) ORDER BY id desc LIMIT 3   [ RunTime:0.000244s ]
+SQL: SHOW COLUMNS FROM `beidou_order` [ RunTime:0.000318s ]
+SQL: SELECT a.id,a.is_comment,a.pay_status,b.tname,b.acode,b.start_time,FROM_UNIXTIME(b.start_time,"%Y-%m-%d %H:%i") starttime,a.ordernum,a.active_id,a.member_id FROM beidou_order a left join beidou_active b on a.active_id=b.id  WHERE ( a.member_id = '1390' ) ORDER BY a.addtime desc LIMIT 3   [ RunTime:0.000241s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 1079 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000406s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000443s ]
+
+[ 2017-07-06T05:23:00+08:00 ] 117.152.225.160 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000560s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000304s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001275s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000441s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000052s ]
+
+[ 2017-07-06T05:23:00+08:00 ] 117.152.225.160 /index.php/Home/Index/get_type_list?type_id=0&lat=30.21221&lng=115.086395
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000340s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000212s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000830s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000500s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((30.21221*PI()/180-a.lat*PI()/180)/2),2)+COS(30.21221*PI()/180)*COS(lat*PI()/180)*POW(SIN((115.086395*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499289780 ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000437s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000409s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000447s ]
+
+[ 2017-07-06T05:23:07+08:00 ] 117.152.225.160 /index.php/Index/get_user_list/id/1390
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000384s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000878s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000458s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `id` = 1390 ) LIMIT 1   [ RunTime:0.000174s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000386s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000425s ]
+
+[ 2017-07-06T05:23:13+08:00 ] 117.152.225.160 /index.php/Index/get_user
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000345s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000257s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000885s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000472s ]
+SQL: SELECT `logo`,`name`,`id` FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0VpblzRuAcYr2QSGd0Eom8w' ) LIMIT 1   [ RunTime:0.000049s ]
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000388s ]
+SQL: SELECT `acode`,`tname`,`is_pay`,`id`,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `member_id` = 1390 ) ORDER BY id desc LIMIT 3   [ RunTime:0.000059s ]
+SQL: SHOW COLUMNS FROM `beidou_order` [ RunTime:0.000318s ]
+SQL: SELECT a.id,a.is_comment,a.pay_status,b.tname,b.acode,b.start_time,FROM_UNIXTIME(b.start_time,"%Y-%m-%d %H:%i") starttime,a.ordernum,a.active_id,a.member_id FROM beidou_order a left join beidou_active b on a.active_id=b.id  WHERE ( a.member_id = '1390' ) ORDER BY a.addtime desc LIMIT 3   [ RunTime:0.000055s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 1079 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000430s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000472s ]
+
+[ 2017-07-06T05:23:13+08:00 ] 117.152.225.160 /index.php/Index/get_user_list/id/1390
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000372s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000836s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000372s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `id` = 1390 ) LIMIT 1   [ RunTime:0.000060s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000378s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000440s ]
+
+[ 2017-07-06T05:23:13+08:00 ] 117.152.225.160 /index.php/Index/get_user
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000365s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000839s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000438s ]
+SQL: SELECT `logo`,`name`,`id` FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0VpblzRuAcYr2QSGd0Eom8w' ) LIMIT 1   [ RunTime:0.000048s ]
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000366s ]
+SQL: SELECT `acode`,`tname`,`is_pay`,`id`,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `member_id` = 1390 ) ORDER BY id desc LIMIT 3   [ RunTime:0.000056s ]
+SQL: SHOW COLUMNS FROM `beidou_order` [ RunTime:0.000338s ]
+SQL: SELECT a.id,a.is_comment,a.pay_status,b.tname,b.acode,b.start_time,FROM_UNIXTIME(b.start_time,"%Y-%m-%d %H:%i") starttime,a.ordernum,a.active_id,a.member_id FROM beidou_order a left join beidou_active b on a.active_id=b.id  WHERE ( a.member_id = '1390' ) ORDER BY a.addtime desc LIMIT 3   [ RunTime:0.000055s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 1079 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000382s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000419s ]
+
+[ 2017-07-06T08:11:10+08:00 ] 14.30.185.178 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000342s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000825s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000491s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000067s ]
+
+[ 2017-07-06T08:11:10+08:00 ] 14.30.185.178 /index.php/Home/Index/login?code=013qkuv51Yq9sN1AVcu51wxkv51qkuvy
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000370s ]
+INFO: Run Behavior\CronRun [ RunTime:0.003218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003873s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T08:11:11+08:00 ] 14.30.185.178 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000354s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000245s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000934s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000532s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000052s ]
+
+[ 2017-07-06T08:11:11+08:00 ] 14.30.185.178 /index.php/Home/Index/get_type_list?type_id=0&lat=22.57099&lng=113.8596
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000392s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000222s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000923s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000581s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((22.57099*PI()/180-a.lat*PI()/180)/2),2)+COS(22.57099*PI()/180)*COS(lat*PI()/180)*POW(SIN((113.8596*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499299871 ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000474s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000396s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000436s ]
+
+[ 2017-07-06T08:11:12+08:00 ] 14.30.185.178 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000348s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000239s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000898s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000499s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0QbsJKSDS69KxYSYljdoJtw' ) LIMIT 1   [ RunTime:0.000173s ]
+SQL: INSERT INTO `beidou_member` (`openid`,`name`,`logo`,`sex`,`type`,`addtime`) VALUES ('o8wkZ0QbsJKSDS69KxYSYljdoJtw','大鑫','/Public/tempfile/forver/20170706/1499299872595d8.png',1,'1',1499299871) [ RunTime:0.000391s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000480s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000526s ]
+
+[ 2017-07-06T09:28:54+08:00 ] 122.224.218.50 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000354s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000221s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000529s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000071s ]
+
+[ 2017-07-06T09:28:54+08:00 ] 122.224.218.50 /index.php/Home/Index/login?code=0212ozth1KLCvw0DSwrh1iRgth12oztr
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000353s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000282s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000940s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T09:28:55+08:00 ] 122.224.218.50 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000350s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000866s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000428s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000052s ]
+
+[ 2017-07-06T09:28:55+08:00 ] 122.224.218.50 /index.php/Home/Index/get_type_list?type_id=0&lat=30.29078&lng=120.0846
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000346s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000843s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000509s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((30.29078*PI()/180-a.lat*PI()/180)/2),2)+COS(30.29078*PI()/180)*COS(lat*PI()/180)*POW(SIN((120.0846*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499304535 ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000432s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000414s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000451s ]
+
+[ 2017-07-06T09:28:56+08:00 ] 122.224.218.50 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000350s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000843s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000452s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0Zz8ILXkJOtV-qUvzjBn3ao' ) LIMIT 1   [ RunTime:0.000168s ]
+SQL: INSERT INTO `beidou_member` (`openid`,`name`,`logo`,`sex`,`type`,`addtime`) VALUES ('o8wkZ0Zz8ILXkJOtV-qUvzjBn3ao','穿靴子的猫','/Public/tempfile/forver/20170706/1499304536595d9.png',1,'1',1499304536) [ RunTime:0.000320s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000498s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000544s ]
+
+[ 2017-07-06T09:32:08+08:00 ] 47.88.188.132 /
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000349s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000915s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000375s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000421s ]
+
+[ 2017-07-06T09:41:18+08:00 ] 223.104.21.75 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000348s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000822s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000517s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000065s ]
+
+[ 2017-07-06T09:41:18+08:00 ] 223.104.21.75 /index.php/Home/Index/login?code=0139omF10fCt6C1yYFD10RrlF109omFA
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000347s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000844s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T09:41:20+08:00 ] 223.104.21.75 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000377s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000852s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000484s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000069s ]
+
+[ 2017-07-06T09:41:22+08:00 ] 223.104.21.75 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000342s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000839s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000444s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000186s ]
+SQL: INSERT INTO `beidou_member` (`openid`,`name`,`logo`,`sex`,`type`,`addtime`) VALUES ('o8wkZ0dEIEwg9snmEIi6pDPkMf-w','༄ཉ྄ིོུ刘依波ཉ྄ིོུ༄','/Public/tempfile/forver/20170706/1499305282595d9.png',1,'1',1499305281) [ RunTime:0.000278s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000534s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000579s ]
+
+[ 2017-07-06T09:41:22+08:00 ] 223.104.21.75 /index.php/Home/Index/login?code=003HoByu0IZ7Se1jnTxu0QVhyu0HoByP
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000355s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000221s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T09:41:23+08:00 ] 223.104.21.75 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000425s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000943s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000473s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000222s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000428s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000469s ]
+
+[ 2017-07-06T09:41:29+08:00 ] 223.104.21.75 /index.php/Index/checkphone
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000367s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000195s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000845s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000432s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000077s ]
+
+[ 2017-07-06T09:41:31+08:00 ] 223.104.21.75 /index.php/Index/get_user_list/id/1393
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000346s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000217s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000880s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000432s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `id` = 1393 ) LIMIT 1   [ RunTime:0.000198s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000419s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000463s ]
+
+[ 2017-07-06T09:41:40+08:00 ] 223.104.21.75 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.003531s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000201s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004029s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000454s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000070s ]
+
+[ 2017-07-06T09:41:40+08:00 ] 223.104.21.75 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000353s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000219s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000859s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000370s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000053s ]
+
+[ 2017-07-06T09:41:40+08:00 ] 223.104.21.75 /index.php/Home/Index/get_type_list?type_id=0&lat=0&lng=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000405s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000881s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000506s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499305300 ) ORDER BY a.id asc  [ RunTime:0.000421s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000384s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000421s ]
+
+[ 2017-07-06T09:41:40+08:00 ] 223.104.21.75 /index.php/Index/dx
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000345s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000843s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000443s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000066s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000480s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000550s ]
+
+[ 2017-07-06T09:41:40+08:00 ] 223.104.21.75 /index.php/Home/Index/get_type_list?type_id=0&lat=0&lng=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000345s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000811s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000455s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499305300 ) ORDER BY a.id asc  [ RunTime:0.000086s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000382s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000418s ]
+
+[ 2017-07-06T09:41:48+08:00 ] 223.104.21.75 /index.php/Index/check_code
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000402s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000910s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000485s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000063s ]
+SQL: UPDATE `beidou_member` SET `phone`='13875260999' WHERE ( `id` = 1393 ) [ RunTime:0.000225s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000411s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000450s ]
+
+[ 2017-07-06T09:41:49+08:00 ] 223.104.21.75 /index.php/Index/get_user_list/id/1393
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000366s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000838s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000459s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `id` = 1393 ) LIMIT 1   [ RunTime:0.000179s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000417s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000482s ]
+
+[ 2017-07-06T09:42:04+08:00 ] 223.104.21.75 /index.php/Home/Index/edit_user
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000382s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000250s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000924s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Upload.class.php 第 167 行.
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000493s ]
+SQL: SELECT `logo` FROM `beidou_member` WHERE ( `id` = 1393 ) LIMIT 1   [ RunTime:0.000153s ]
+SQL: UPDATE `beidou_member` SET `name`='༄ཉ྄ིོུ刘依波ཉ',`lianxi`='13875260999',`sex`='1',`birth`='1985-11-13',`logo`='/Public/tempfile/forver/20170706/595d956cb4096.png' WHERE ( `id` = 1393 ) [ RunTime:0.000168s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000422s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000467s ]
+
+[ 2017-07-06T09:45:36+08:00 ] 223.104.21.75 /index.php/Index/checkphone
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000339s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000833s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000465s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000193s ]
+
+[ 2017-07-06T09:45:56+08:00 ] 223.104.21.75 /index.php/Index/get_user
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000363s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000211s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000856s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000445s ]
+SQL: SELECT `logo`,`name`,`id` FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000179s ]
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000372s ]
+SQL: SELECT `acode`,`tname`,`is_pay`,`id`,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `member_id` = 1393 ) ORDER BY id desc LIMIT 3   [ RunTime:0.000270s ]
+SQL: SHOW COLUMNS FROM `beidou_order` [ RunTime:0.000325s ]
+SQL: SELECT a.id,a.is_comment,a.pay_status,b.tname,b.acode,b.start_time,FROM_UNIXTIME(b.start_time,"%Y-%m-%d %H:%i") starttime,a.ordernum,a.active_id,a.member_id FROM beidou_order a left join beidou_active b on a.active_id=b.id  WHERE ( a.member_id = '1393' ) ORDER BY a.addtime desc LIMIT 3   [ RunTime:0.000252s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 1079 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000406s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000447s ]
+
+[ 2017-07-06T09:45:59+08:00 ] 223.104.21.75 /index.php/Index/my_join_active_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000349s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000847s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000437s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000074s ]
+SQL: SHOW COLUMNS FROM `beidou_order` [ RunTime:0.000312s ]
+SQL: SELECT a.id,a.is_comment,a.pay_status,b.acode,b.start_time,FROM_UNIXTIME(b.start_time,"%Y-%m-%d %H:%i") starttime,b.tname,a.active_id FROM beidou_order a left join beidou_active b on a.active_id=b.id  WHERE ( a.member_id = '1393' ) ORDER BY a.addtime desc  [ RunTime:0.000270s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 1262 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000413s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000450s ]
+
+[ 2017-07-06T09:45:59+08:00 ] 223.104.21.75 /index.php/Index/my_pub_active_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000345s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000188s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000820s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000407s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000061s ]
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000466s ]
+SQL: SELECT `acode`,`tname`,`is_pay`,`id`,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `member_id` = 1393 ) ORDER BY addtime desc  [ RunTime:0.000218s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000414s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000454s ]
+
+[ 2017-07-06T09:46:00+08:00 ] 223.104.21.75 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000379s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000850s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000515s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000066s ]
+
+[ 2017-07-06T09:46:01+08:00 ] 223.104.21.75 /index.php/Home/Index/login?code=013agJ7t1mcmla0uHyat1xUz7t1agJ7Y
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000353s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000207s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000866s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T09:46:02+08:00 ] 223.104.21.75 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000340s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000811s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000443s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000062s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000387s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000426s ]
+
+[ 2017-07-06T09:46:03+08:00 ] 223.104.21.75 /index.php/Home/Index/get_type_list?type_id=2&lat=0&lng=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000349s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000204s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000837s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000515s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499305563 ) AND ( a.type_id = '2' ) ORDER BY a.id asc  [ RunTime:0.000422s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000404s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000446s ]
+
+[ 2017-07-06T09:46:17+08:00 ] 223.104.21.75 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000382s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000442s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000052s ]
+
+[ 2017-07-06T09:46:17+08:00 ] 223.104.21.75 /index.php/Home/Index/get_type_list?type_id=2&lat=27.830778&lng=112.99898
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000344s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000841s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000486s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((27.830778*PI()/180-a.lat*PI()/180)/2),2)+COS(27.830778*PI()/180)*COS(lat*PI()/180)*POW(SIN((112.99898*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499305577 ) AND ( a.type_id = '2' ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000436s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000399s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000437s ]
+
+[ 2017-07-06T09:46:19+08:00 ] 223.104.21.75 /index.php/Home/Index/get_type_list?type_id=2&lat=27.83177&lng=112.99781
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000475s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000965s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000496s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((27.83177*PI()/180-a.lat*PI()/180)/2),2)+COS(27.83177*PI()/180)*COS(lat*PI()/180)*POW(SIN((112.99781*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499305579 ) AND ( a.type_id = '2' ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000464s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000458s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000501s ]
+
+[ 2017-07-06T09:46:24+08:00 ] 223.104.21.75 /index.php/Index/checkphone
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000346s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000849s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000453s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0dEIEwg9snmEIi6pDPkMf-w' ) LIMIT 1   [ RunTime:0.000065s ]
+
+[ 2017-07-06T11:24:20+08:00 ] 115.220.120.100 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000388s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000864s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000496s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000068s ]
+
+[ 2017-07-06T11:24:21+08:00 ] 115.220.120.100 /index.php/Home/Index/login?code=081GbQ0P1cspN41Hl9ZO1RuW0P1GbQ0y
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000378s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000885s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T11:24:21+08:00 ] 115.220.120.100 /index.php/Index/check_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000346s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000252s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000885s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_member` [ RunTime:0.000607s ]
+SQL: SELECT * FROM `beidou_member` WHERE ( `openid` = 'o8wkZ0UKbyx-xTiT4BRIi11h0LS8' ) LIMIT 1   [ RunTime:0.000246s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000602s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000658s ]
+
+[ 2017-07-06T11:24:26+08:00 ] 115.220.120.100 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000368s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000839s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000444s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000115s ]
+
+[ 2017-07-06T11:24:26+08:00 ] 115.220.120.100 /index.php/Home/Index/get_type_list?type_id=0&lat=29.920168&lng=121.64639
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000378s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000195s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000861s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000499s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((29.920168*PI()/180-a.lat*PI()/180)/2),2)+COS(29.920168*PI()/180)*COS(lat*PI()/180)*POW(SIN((121.64639*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499311466 ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000448s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000421s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000459s ]
+
+[ 2017-07-06T11:46:57+08:00 ] 139.162.113.204 /
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000343s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000825s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000390s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000445s ]
+
+[ 2017-07-06T15:05:21+08:00 ] 61.158.149.201 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000432s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000936s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000510s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000068s ]
+
+[ 2017-07-06T15:05:21+08:00 ] 61.158.149.201 /index.php/Home/Index/login?code=081Zn6FK1LoEQ702DLHK16NpFK1Zn6F-
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000382s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000862s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T15:05:23+08:00 ] 61.158.149.201 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000341s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000837s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000467s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000050s ]
+
+[ 2017-07-06T15:05:23+08:00 ] 61.158.149.201 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000366s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000835s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000502s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000065s ]
+
+[ 2017-07-06T15:05:23+08:00 ] 61.158.149.201 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000370s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000842s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000426s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000050s ]
+
+[ 2017-07-06T15:05:23+08:00 ] 61.158.149.201 /index.php/Home/Index/get_type_list?type_id=0&lat=0&lng=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000377s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000869s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000551s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499324723 ) ORDER BY a.id asc  [ RunTime:0.000423s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000436s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000475s ]
+
+[ 2017-07-06T15:05:23+08:00 ] 61.158.149.201 /index.php/Home/Index/get_type_list?type_id=0&lat=0&lng=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000494s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000204s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000993s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000527s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499324723 ) ORDER BY a.id asc  [ RunTime:0.000091s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000414s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000453s ]
+
+[ 2017-07-06T15:05:24+08:00 ] 61.158.149.201 /index.php/Home/Index/login?code=031V73RP1DKyn71st4QP1BkYQP1V73Rp
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000433s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000942s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T15:13:39+08:00 ] 115.220.136.187 /index.php/Home/Index/get_type
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000349s ]
+INFO: Run Behavior\CronRun [ RunTime:0.004223s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004865s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_category` [ RunTime:0.000475s ]
+SQL: SELECT `id`,`cate_name` FROM `beidou_category` WHERE ( `pid` = 0 ) AND ( `is_show` = '1' ) ORDER BY sort_num  [ RunTime:0.000595s ]
+
+[ 2017-07-06T15:13:39+08:00 ] 115.220.136.187 /index.php/Home/Index/get_tj_list
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000346s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000189s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000807s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000844s ]
+SQL: SELECT `id`,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime FROM `beidou_active` WHERE ( `acode` = '1' ) AND ( `is_nav` = 1 ) AND ( `is_show` = 1 ) LIMIT 5   [ RunTime:0.000065s ]
+
+[ 2017-07-06T15:13:39+08:00 ] 115.220.136.187 /index.php/Home/Index/login?code=051gx5dl0qvDeo1ugK9l0zsldl0gx5dI
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000342s ]
+INFO: Run Behavior\CronRun [ RunTime:0.004214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004837s ]
+NOTIC: [8] Undefined index: errcode /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 772 行.
+
+[ 2017-07-06T15:13:39+08:00 ] 115.220.136.187 /index.php/Home/Index/get_type_list?type_id=0&lat=29.93469&lng=121.6274
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000347s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000842s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /home/wwwroot/oho.oxygenhoop.com/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `beidou_active` [ RunTime:0.000485s ]
+SQL: SELECT a.*,c.cate_name,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.thumb_pic) thumb_logo,CONCAT("https://oho.oxygenhoop.com/Public/Uploads/",a.pic) logo,FROM_UNIXTIME(start_time,"%Y-%m-%d %H:%i") starttime,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((29.93469*PI()/180-a.lat*PI()/180)/2),2)+COS(29.93469*PI()/180)*COS(lat*PI()/180)*POW(SIN((121.6274*PI()/180-lng*PI()/180)/2),2)))*1000) as jl FROM beidou_active a left join beidou_member b on a.member_id=b.id left join beidou_category c on a.type_id=c.id  WHERE ( b.type <> '2' ) AND ( a.is_pay = '1' ) AND ( a.start_time >= 1499325219 ) HAVING jl<=10000 ORDER BY jl asc  [ RunTime:0.000432s ]
+NOTIC: [2] Invalid argument supplied for foreach() /home/wwwroot/oho.oxygenhoop.com/Application/Home/Controller/IndexController.class.php 第 611 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000418s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000541s ]
+
+[ 2017-07-06T15:43:04+08:00 ] 118.190.79.161 /
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCache [ RunTime:0.000373s ]
+INFO: Run Behavior\CronRun [ RunTime:0.000209s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000879s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTrace [ RunTime:0.000373s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000417s ]
+

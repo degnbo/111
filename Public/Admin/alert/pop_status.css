@@ -1,0 +1,12 @@
+/*弹窗用的到CSS*/
+/*弹窗函数样式*/
+#wstatus { position:fixed; left:200px; top:400px; width:auto;line-height:38px; background:#fff; border:solid 4px #e5e5e5; padding:5px; z-index:9999 }
+#wstatus .wstatus_s { width:38px; height:38px; float:left; }
+#wstatus .wstatus_s1 {  background:url(Img/ico.png) no-repeat left top; }
+#wstatus .wstatus_s2 {  background:url(Img/ico.png) no-repeat left bottom; }
+#wstatus .wstatus_s3 {  background:url(Img/loading.gif) no-repeat center; }
+#wstatus .wstatus_s4 {  background:url(Img/ico.png) no-repeat left -38px; }
+#wstatus .wstatus_f { padding:0 6px 0 45px; display: block; text-align:left; font-size:14px; line-height: 38px; color:#333; font-family:"微软雅黑"; }
+/*遮照*/
+#bremove { width:100%; height:100%; background:#000; opacity:0.5; filter:alpha(opacity=50); z-index:9998; position:fixed; left:0; top:0; }
+/*CSS结束*/

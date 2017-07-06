@@ -1,0 +1,65 @@
+<include file="Public/header"/>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>数据表格</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{:U('Index/index')}">轮播图列表</a>
+                        </li>
+                        <li>
+                            <strong>banner详情</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <span class="">
+                                    <a href="{:U('Banner/lis')}" class="btn btn-primary ">轮播图列表
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="ibox-content">
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                    <tbody>
+                                    <tr>
+                                        <td>banner名称:</td>
+                                        <td>{$list[0]['banner_name']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>banner描述:</td>
+                                        <td>{$list[0]['banner_des']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>图片:</td>
+                                        <td>
+                                            <foreach name="list" item="vo" key="k">
+                                                <img src="__PUBLIC__/Uploads/{$vo.pic}" width="160px" height="80px" style="margin-left: 50px;margin-top: 20px"/>
+                                                <span style="width: 200px"></span>
+                                                <if condition="$k%2 eq 1"><br></if>
+                                            </foreach>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                    <div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+                        <ul class="pagination"><li class="paginate_button previous disabled" aria-controls="editable" tabindex="0" id="editable_previous">
+                            {$page}
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </div>
+<include file="Public/footer"/>

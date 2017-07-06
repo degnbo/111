@@ -1,0 +1,148 @@
+<include file="Public/header"/>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>数据表格</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{:U('Index/index')}">订单管理</a>
+                        </li>
+                        <li>
+                            <strong>订单列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <span class="">
+                                    <a href="javascript:void(0);" class="btn btn-primary ">发布活动订单列表
+                                    </a>
+                                    <!--<a href="{:U('Order/lis',array('paystatus'=>'0'))}">已支付</a>
+                                    <a href="{:U('Order/lis',array('paystatus'=>'1'))}">|待支付</a>
+                                    <a href="{:U('Order/lis',array('paystatus'=>'2'))}">|已删除</a>-->
+                                </span>
+                                <form action="{:U('Order/lis1')}" method="get">
+                                    <div class="ibox-tools" style="margin-bottom:35px;position:relative;top:-30px">
+                                        <input type="text" name="keyword" class="so_input"
+                                               placeholder="输入订单号" value="{:I('get.keyword')}"/>
+                                        <input type="submit" value="搜索"
+                                               style="height:28px;
+                                               margin-right:7px;font-size:13px;
+                                               border:1px solid #eee;margin-left:-10px;"/>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="ibox-content">
+                                <table class="table table-striped table-bordered table-hover " id="editable" >
+                                    <thead>
+                                        <tr>
+                                            <th align:center>订单号</th>
+                                            <th width='10%'>活动名称</th>
+                                            <th>发布人</th>
+                                            <th>下单时间</th>
+                                            <th>活动总人数</th>
+                                            <th>活动价格</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <foreach name="dlist" item="vo" key="k">
+                                            <tr class="gradeU">
+                                                <td class="jz">
+                                                    <if condition="$vo.ordernum eq ''">
+                                                        --
+                                                        <!--{:"wxc767748b8c5bfa4b".time()}-->
+                                                        <else />{$vo.ordernum}
+                                                    </if>
+                                                </td>
+                                                <td class="jz">{$vo.tname}</td>
+                                                <td class="jz">{$vo.name}</td>
+                                                <td class="jz">{:date("Y-m-d H:i:s",$vo['addtime'])}</td>
+                                                <td class="jz">{$vo.number}</td>
+                                                <td class="jz">{$vo['number']*$vo['price']}</td>
+                                                <td class="jz">
+                                                    <if condition="$vo.acode eq 1">
+                                                        <span style="color: green">后台发布的活动</span>
+                                                        <else />
+                                                        <if condition="$vo.is_pay eq 1">
+                                                            已支付
+                                                            <elseif condition="$vo.is_pay eq 0 "/>
+                                                            未支付
+                                                            <elseif condition="$vo.is_pay eq 2 "/>
+                                                            退款中
+                                                            <elseif condition="$vo.is_pay eq 3"/>
+                                                            签到，已退款
+                                                            <elseif condition="$vo.is_pay eq 4"/>
+                                                            活动取消
+                                                            <elseif condition="$vo.is_pay eq 5"/>
+                                                            非签到，已退款
+                                                            <elseif condition="$vo.is_pay eq 6"/>
+                                                            未退款
+                                                        </if>
+                                                    </if>
+                                                </td>
+                                                <td class="jz">
+                                                    <a href="{:U('Order/lis2',array('id'=>$vo['id']))}" >
+                                                    活动订单</a>
+                                                    <a href="{:U('Order/lis3',array('id'=>$vo['id']))}" >
+                                                        活动评论</a>
+                                                    <a href="{:U('Order/pub_detail',array('id'=>$vo['id'],'p'=>I('get.p'),'paystatus'=>I('get.paystatus')))}" >
+                                                        <img src="__PUBLIC__/Admin/img/icon_edit.gif"/></a>
+                                                    <if condition="$vo.pay_status eq 1 && $vo.is_show eq 1">
+                                                        <a onclick="return confirm('你确定要删除')" href="{:U('Order/delete',array('id'=>$vo['id'],'p'=>I('get.p')))}">
+                                                            <img src="__PUBLIC__/Admin/img/icon_trash.gif"/>
+                                                        </a>
+                                                    </if>
+                                                </td>
+                                            </tr>
+                                        </foreach>
+
+                                    </tbody>
+
+                                    <script>
+                                        $(function(){
+                                            $(".xqy").find('img').click(function() {
+                                                var url = "{:U('Information/ajaxChange')}";
+                                                var val = $(this).attr('xs');
+                                                var mid = $(this).parent().attr('mid');
+                                                if (val == 1) {
+                                                    $.post(url, {val: val, mid: mid});
+                                                    $(this).attr('src', "__PUBLIC__/Admin/img/error.png");
+                                                    $(this).attr('xs', '0');
+
+                                                } else {
+                                                    $.post(url, {val: val, mid: mid});
+                                                    $(this).attr('src', "__PUBLIC__/Admin/img/true.png");
+                                                    $(this).attr('xs', '1');
+                                                }
+                                            })
+                                        })
+                                   </script>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+				    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
+						<div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+							<ul class="pagination">
+							<li class="paginate_button previous disabled" aria-controls="editable" tabindex="0" id="editable_previous">
+								{$page}
+								</li>
+							</ul>
+						</div>
+                    </div>
+                </div>
+            </div>
+<include file="Public/footer"/>

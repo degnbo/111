@@ -1,0 +1,177 @@
+<include file="Public/header" />
+<script type="text/javascript" src="__PUBLIC__/colorpicker/colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">栏目列表</a>
+            </li>
+            <li>
+                <strong>添加栏目</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Article/lis',array('cid'=>I('get.cid')))}";
+                            location.reload();
+                            location.href=url;
+                        }
+                        $(function(){
+                        })
+                    </script>
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">内容列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Article/article',array('cid'=>I('get.cid')))}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="model_name" value="Article"/>
+                        <input type="hidden" name="cate_id" value="{:I('get.cid')}"/>
+                        <div class="form-group">
+                            <label>标题</label>
+                            <input type="text" name="title" id="title"
+                                   datatype="*1-30" value="{$vo.title}" style="color:{$vo['colorval']};font-weight:{$vo['boldval']}"
+                                   nullmsg="请输入标题" errormsg="长度不能超过30"
+                                   placeholder="请输入标题名称" class="form-control">
+                            <span onclick="colorpicker('colorpanel','colorval','title');" class="color" title="标题颜色"style="position:relative;left:490px;top:-25px"><img src="__PUBLIC__/colorpicker/colorBg.png" /></span>
+                            <span id="colorpanel"style="position:relative;left:560px;top:-25px"></span>
+                            <span onclick="blodpicker('boldval','title');" class="blod" title="标题加粗" style="position:relative;left:500px;top:-25px"><img src="__PUBLIC__/colorpicker/boldBg.png" /></span>
+                            <span onclick="clearpicker()" class="clear" title="清除属性" style="position:relative;left:540px;top:-43px;color:green">[#]</span>
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <input type="hidden" name="colorval" id="colorval" value="{$vo['colorval']}" />
+                        <input type="hidden" name="boldval" id="boldval" value="{$vo['boldval']}" />
+                        <div class="form-group">
+                            <label>标题别名</label>
+                            <input type="text" name="alias"
+                                   nullmsg="请输入标题别名" errormsg="长度不能超过30"
+                                   placeholder="请输入标题别名" class="form-control">
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>logo图标</label>
+                            <input type="file" name="myfile"/>
+                        </div>
+                        <div class="form-group">
+                            <label>图片宽度(表示生成缩略图的宽度和高度，一般不用填)</label>
+                            <input type="text" name="width"
+                                   placeholder="请输入图片宽度" class="form-control">
+                            <label>图片高度(表示生成缩略图的宽度和高度，一般不用填)</label>
+                            <input type="text" name="height"
+                                   placeholder="请输入图片高度" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>关键字</label>
+                            <input type="text" name="keywords"
+                                   nullmsg="请输入关键字" errormsg="长度不能超过30"
+                                   placeholder="请输入关键字" class="form-control">
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>作者</label>
+                            <input type="text" name="author"
+                                   nullmsg="请输入作者" errormsg="长度不能超过20"
+                                   placeholder="请输入作者" class="form-control" value="author">
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>描述</label>
+                            <textarea name="des"
+                                   nullmsg="请输入描述" errormsg="长度不能超过30"
+                                   placeholder="请输入描述" class="form-control"></textarea>
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>发布时间</label>
+                            <input type="text" name="uptime" id="demo"
+                                   placeholder="请输入发布时间"  class="laydate-icon">
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <script>
+                            ;!function(){
+                                laydate.skin('molv');
+                                laydate({
+                                    elem: '#demo',
+                                    istime:true,
+                                    format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
+                                    /*festival: true, //显示节日
+                                     choose: function(datas){ //选择日期完毕的回调
+                                     alert('得到：'+datas);
+                                     }*/
+                                });
+                            }();
+                        </script>
+                        <div class="form-group">
+                            <label>是否推荐</label><br>
+                            <input type="radio" name="is_rec" value="1" datatype="*" nullmsg="请选择">是
+                            <input type="radio" name="is_rec"   value="0">否
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>是否显示</label><br>
+                            <input type="radio" name="is_show" value="1" datatype="*" nullmsg="请选择">是
+                            <input type="radio" name="is_show"   value="0">否
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <!-- nullmsg="请输入排序数字" placeholder="请输入排序数字" datatype="n" -->
+                        <div class="form-group">
+                            <label>文章排序</label>
+                            <input type="hidden" name="sort_num" value="100"
+                                   class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>文章内容</label><br>
+                            <textarea name="content" cols="50" rows="5" style="width:1000px;height:500px"></textarea>
+                            <!--引入kindeditor编辑器-->
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+                            <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+                            <script type="text/javascript">
+                                var editor;
+                                KindEditor.ready(function(K) {
+                                    editor = K.create('textarea[name="content"]', {
+                                        allowFileManager : true,
+                                        afterBlur : function(){
+                                            //编辑器失去焦点时直接同步，可以取到值
+                                            this.sync();
+                                        }
+                                    });
+                                });
+                            </script>
+                            <!--引入kindeditor编辑器-->
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>

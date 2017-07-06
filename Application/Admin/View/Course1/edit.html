@@ -1,0 +1,222 @@
+<include file="Public/header" />
+<!--<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>-->
+<script type="text/javascript" src="__PUBLIC__/jcrop/getjcrop.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/Validform.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+
+<!--上传图片有关js和css-->
+<!--<script src="__PUBLIC__/cjsc/jquery.ajaxfileupload.js" type="text/javascript"></script>
+<script src="__PUBLIC__/cjsc/jquery.jcrop.js" type="text/javascript"></script>
+<script src="__PUBLIC__/cjsc/jquery.Jcrop.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/cjsc/avatarCutter.js" type="text/javascript"></script>
+<script type="text/javascript" src="__PUBLIC__/cjsc/upload.js"></script>
+<script src="__PUBLIC__/cjsc/window.js" type="text/javascript"></script>
+<script type="text/javascript" src='__PUBLIC__/cjsc/noscroll.js'></script>
+<script type="text/javascript" src='__PUBLIC__/cjsc/select-ui.min.js'></script>
+<link rel="stylesheet" href="__PUBLIC__/cjsc/jquery.jcrop.min.css" type="text/css"/>
+<link href="__PUBLIC__/cjsc/select.css" rel="stylesheet" type="text/css" />-->
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">课程列表</a>
+            </li>
+            <li>
+                <strong>修改课程</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <script>
+                        function fnClickAddRow() {
+                            var url="{:U('Course/lis',array('p'=>I('get.p')))}";
+                            location.reload();
+                            location.href=url;
+                        }
+                        $(function(){
+                        })
+                    </script>
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0)" class="btn btn-primary ">课程列表</a>
+                    </div>
+                    <form role="form" id="form" action="{:U('Course/edit',array('id'=>$vo['id'],'p'=>I('get.p')))}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>课程封面展示</label>
+                            <input type="text" style="width: 200px;" name="logo" id="logo" value=""/>
+                            <button type="button" class="btn btn-success" id="btnUpload">上传</button>
+                            <input type="file" name="myfile" style="display:none" id="myfile"/>
+                            <span  class="btn btn-primary" ><a href="javascript:;" onclick="GetJcrop('jcrop','logo');return false;" style="color:#fff">裁剪</a></span>
+                            <input type="hidden" name="thumb_logo" value=""/>
+                            <div><img src="" id="slturl"/></div>
+                        </div>
+                        <script>
+                            $(function () {
+                                $('#btnUpload').click(function(){
+                                    $('#myfile').click();
+                                })
+                                $("#myfile").wrap("<form id='myupload' style='display:none' target='ajax_iframe' action=\"{:U('Course/ajax_uploads\')}\" method='post' enctype='multipart/form-data'></form>");
+                                $("#myfile").change(function(){ //选择文件
+                                    //alert(1);return false;
+                                    $("#logo").val('');
+                                    $("#myupload").submit();
+                                });
+
+                            });
+                        </script>
+                        <script type="text/javascript">
+                            $(function(){
+                                //ajax图片上传
+                                //
+                            });
+                        </script>
+                        <iframe name="ajax_iframe" style="display:none"></iframe>
+                        <input type="hidden" value="{$vo.id}" name="id"/>
+                        <div class="form-group">
+                            <label>课程分类</label>
+                            <select name="ftype" onchange="get_list(this)" datatype="*" nullmsg="请选择一级分类" errormsg="请选择一级分类">
+                                <option value="">一级分类</option>
+                                <foreach name="flist" item="va">
+                                    <option value="{$va.id}" <if condition="$va.id eq $vo['ftype']">selected</if>>{$va.tname}</option>
+                                </foreach>
+                            </select>
+                            <select name="stype" id="ej" datatype="*" nullmsg="请选择二级分类" errormsg="请选择二级分类">
+                                <option value="">二级级分类</option>
+                                <foreach name="slist" item="va">
+                                    <option value="{$va.id}" <if condition="$va.id eq $vo['stype']">selected</if>>{$va.tname}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <script>
+                            function get_list(obj){
+                                var id=$(obj).val();
+                                $.ajax({
+                                    url:"{:U('Course/get_list')}",
+                                    type:'post',
+                                    data:{id:id},
+                                    dataType:'json',
+                                    success:function(e){
+                                        var html='';
+                                        if(e.result) {
+                                            $("#ej").empty();
+                                            $.each(e.xq,function(i,v){
+                                                html+='<option value="'+ v.id+'">'+ v.tname+'</option>';
+                                            })
+                                            $('#ej').append('<option value="">二级分类</option>').append(html);
+                                        }else{
+                                            $("#ej").empty();
+                                            $('#ej').append('<option value="">二级分类</option>');
+                                        }
+                                    }
+                                })
+                            }
+                        </script>
+                        <div class="form-group">
+                            <label>课程时间</label>
+                            <input type="text" name="start_time"
+                                   datatype="*" onclick="laydate({istime:true,format: 'YYYY-MM-DD hh:mm:ss'})"
+                                   nullmsg="请输入开课时间" errormsg="请输入时间" <if condition="$vo.start_time neq ''">value="{:date('Y-m-d H:i:s',$vo['start_time'])}"</if>
+                                   placeholder="请输入开课时间" class="laydate-icon">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>教练列表</label>
+                            <select datatype="*" nullmsg="请选择教练" errormsg="请选择教练" class="form-control" name="mid">
+                                <option value="">选择教练</option>
+                                <foreach name="jlist" item="va">
+                                    <option value="{$va.id}" <if condition="$va.id eq $vo['mid']">selected</if>>{$va.name}</option>
+                                </foreach>
+                            </select>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>课程名称</label>
+                            <input type="text" name="name"
+                                   datatype="*1-30" value="{$vo.name}"
+                                   nullmsg="请输入课程名称" errormsg="长度不能超过30"
+                                   placeholder="请输入课程名称" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>课程地点</label>
+                            <input type="text" name="address"
+                                   datatype="*1-50" value="{$vo.address}"
+                                   nullmsg="请输入课程地点" errormsg="长度不能超过50"
+                                   placeholder="请输入课程地点" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>课程人数</label>
+                            <input type="text" name="number"
+                                   datatype="n"  value="{$vo.number}"
+                                   nullmsg="请输入课程人数" errormsg="请输入数字"
+                                   placeholder="请输入课程人数" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>课程价格</label>
+                            <input type="text" name="price"
+                                   datatype="n" value="{$vo.price}"
+                                   nullmsg="请输入课程价格" errormsg="请输入数字"
+                                   placeholder="请输入课程价格" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>课程详情</label><br>
+                            <textarea name="des" cols="50" rows="5" class="form-control"
+                                      datatype="*1-50" placeholder="请输入课程简介"
+                                      nullmsg="请输入课程简介" errormsg="长度不能超过50">{$vo.des}</textarea>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>课程详情</label><br>
+                            <textarea name="content" id="content" cols="50" rows="5" >{$vo.content}</textarea>
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                $("#form").Validform({
+                    tiptype:function(msg,o,cssctl) {
+                        if (!o.obj.is("form")) {
+                            var objtip = o.obj.siblings('div.error');
+                            cssctl(objtip, o.type);
+                            objtip.text(msg);
+                        }
+                    }
+                })
+            </script>
+
+
+        </div>
+    </div>
+
+</div>
+<include file="Public/footer"/>
+引入UMeditor编辑器
+<link href="__PUBLIC__/umeditor1_2_2-utf8-php/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    UM.getEditor("content", {
+        initialFrameWidth : "120%",
+        initialFrameHeight : "500",
+    });
+</script>
+
+
+

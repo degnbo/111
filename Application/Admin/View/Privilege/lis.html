@@ -1,0 +1,134 @@
+<include file="Public/header"/>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>数据表格</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">RBAC管理</a>
+                        </li>
+                        <li>
+                            <strong>权限列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <script>
+                                function fnClickAddRow() {
+                                    var url="{:U('Privilege/add')}";
+                                    location.href=url;
+                                }
+                            </script>
+                            <div class="ibox-content">
+                                <div class="">
+                                    <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">添加权限</a>
+                                </div>
+                                <table class="table table-striped table-bordered table-hover " id="editable" >
+                                    <thead>
+                                        <tr>
+                                            <th align:center>权限Id</th>
+                                            <th>权限名称</th>
+                                            <th>权限路径</th>
+                                            <th>上级权限的ID，0：顶级权限</th>
+                                            <th>排序数字，越小越靠前</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="dlist" item="vo">
+                                        <tr class="gradeU" clas="{$vo['level']}"
+                                            <if condition='$vo.level gt 0'>style="display:none"</if>>
+                                                <td class="jz">{$vo.id}</td>
+                                                <td>
+                                                    {$vo.level|str_repeat='&nbsp;&nbsp;&nbsp;&nbsp;',###}
+                                                    <img class='add' src="__PUBLIC__/Admin/img/menu_plus.gif" />
+                                                    {$vo.pri_name}</td>
+                                                <td class="center jz"><input type='text' class='urllj' value="{$vo.pri_url}" pid="{$vo.id}"/></td>
+                                                <td class="center jz">{$vo.pid}</td>
+                                                <td class="jz"><input type='text' class='sortn' value="{$vo.sort_num}" pid="{$vo.id}" size='3' /></td>
+                                                <td class="jz"><a href="{:U('Privilege/edit',array('id'=>$vo['id']))}"><img src="__PUBLIC__/Admin/img/icon_edit.gif"/></a>
+                                                    <a onclick="return confirm('你确定要删除')" href="{:U('Privilege/delete',array('id'=>$vo['id']))}"><img src="__PUBLIC__/Admin/img/icon_trash.gif"/></a>
+                                                </td>
+                                        </tr>
+                                    </foreach>
+                                    </tbody>
+
+                                </table>
+                                <script>
+                                    $(function(){
+									    $(".sortn").blur(function(){
+										    var num=$(this).val();
+											var pid=$(this).attr('pid');
+											//alert($(this).parent().siblings().length);
+											var url=$(this).parent().siblings().find(".urllj").val();
+											//alert(num);
+											$.post("{:U('Privilege/editSortnum')}",{id:pid,url:url,num:num},function(e){
+											    $(this).val(e.num);
+												$(this).parent().siblings().find(".urllj").val(e.url)
+											},"json");
+										})
+									    $(".urllj").blur(function(){
+										    var url=$(this).val();
+											var pid=$(this).attr('pid');
+											//alert($(this).parent().siblings().length);
+											var num=$(this).parent().siblings().find(".sortn").val();
+											//alert(num);
+											$.post("{:U('Privilege/editSortnum')}",{id:pid,url:url,num:num},function(e){
+											    $(this).val(e.url);
+												$(this).parent().siblings().find(".sortn").val(e.num)
+											},"json");
+										})
+                                        $('.add').click(function(){
+                                            var img=$(this);
+                                            //alert(img.parent().parent().attr('class'));
+                                            //return false;
+                                            if( img.attr('src')=="__PUBLIC__/Admin/img/menu_plus.gif"){
+                                                img.attr('src',"__PUBLIC__/Admin/img/menu_minus.gif");
+                                                img.parent().parent().nextAll().each(function(i,val){
+                                                    //alert($(val).attr('clas'));
+                                                    if($(val).attr('clas')==parseInt(img.parent().parent().attr('clas'))+1){
+                                                        $(val).show();
+                                                    }
+                                                    if($(val).attr('clas')<=parseInt(img.parent().parent().attr('clas'))){
+                                                        return false;
+                                                    }
+                                                })
+                                            }else{
+                                                $(this).attr('src',"__PUBLIC__/Admin/img/menu_plus.gif");
+                                                img.parent().parent().nextAll().each(function(i,val){
+                                                    //alert($(val).attr('class'));
+                                                    if($(val).attr('clas')>parseInt(img.parent().parent().attr('clas'))){
+                                                        $(val).hide();
+                                                        $(val).children('td').find('img.add').attr('src',"__PUBLIC__/Admin/img/menu_plus.gif");
+                                                    }else{
+                                                        return false;
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    })
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+                        <ul class="pagination"><li class="paginate_button previous disabled" aria-controls="editable" tabindex="0" id="editable_previous">
+                          
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          <include file="Public/footer"/>

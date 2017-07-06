@@ -1,0 +1,136 @@
+<include file="Public/header"/>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>数据表格</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">RBAC管理</a>
+                        </li>
+                        <li>
+                            <strong>管理员列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>可编辑表格</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="table_data_tables.html#">选项1</a>
+                                        </li>
+                                        <li><a href="table_data_tables.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <script>
+                               /* var i=1;
+                                var wo;
+                                $(function(){
+                                    if(i==0){
+                                        clearInterval(wo);
+                                    }else{
+                                       var wo=setInterval(function(){
+                                           location.reload();
+                                       },1000);
+                                    }
+                                    i--;
+                                    //history.go(0);
+                                })*/
+                                function fnClickAddRow() {
+                                    var url="{:U('Admin/add')}";
+                                    location.href=url;
+                                }
+                            </script>
+                            <div class="ibox-content">
+                                <div class="">
+                                    <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">添加管理员</a>
+                                </div>
+                                <table class="table table-striped table-bordered table-hover " id="editable" >
+                                    <thead>
+                                        <tr>
+                                            <th align:center>管理员Id</th>
+                                            <th>姓名</th>
+                                            <th>密码</th>
+                                            <th>角色列表</th>
+                                            <th>是否禁用</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="dlist" item="vo">
+                                        <tr class="gradeU">
+                                                <td class="jz">{$vo.id}</td>
+                                                <td class="jz">{$vo.username}</td>
+                                                <td class="jz">{$vo.password}</td>
+                                                <td class="jz">{$vo.role_list}</td>
+                                                <td class="jz xqy" mid="{$vo.id}">
+                                                    <if condition="$vo.is_deny eq 0">
+                                                        <img xs='0' src="__PUBLIC__/Admin/img/error.png"/><else/>
+                                                        <img xs='1' src="__PUBLIC__/Admin/img/true.png"/>
+                                                    </if>
+                                                </td>
+                                                <td class="jz"><a href="{:U('Admin/edit',array('id'=>$vo['id']))}"><img src="__PUBLIC__/Admin/img/icon_edit.gif"/></a>
+                                                    <if condition="strpos($vo['role_id'],'1') heq false">
+                                                        <a onclick="return confirm('你确定要删除')" href="{:U('Admin/delete',array('id'=>$vo['id']))}"><img src="__PUBLIC__/Admin/img/icon_trash.gif"/></a>
+                                                    </if>
+                                                </td>
+                                        </tr>
+                                    </foreach>
+                                    </tbody>
+
+                                </table>
+                                <script>
+                                    $(function(){
+                                        $(".xqy").find('img').click(function() {
+                                            var me=$(this);
+                                            var url = "{:U('Admin/ajaxChange')}";
+                                            var val = $(this).attr('xs');
+                                            var mid = $(this).parent().attr('mid');
+                                            if (val == 1) {
+                                                $.post(url, {val: val, mid: mid},function(e){
+                                                    if(e==1){
+                                                        alert('管理员不能被禁用');
+                                                        return false;
+                                                    }else{
+                                                        me.attr('src', "__PUBLIC__/Admin/img/error.png");
+                                                        me.attr('xs', '0');
+                                                    }
+                                                },'html');
+                                            } else {
+                                                $.post(url, {val: val, mid: mid},function(e){
+                                                    if(e==1){
+                                                        alert('管理员不能被禁用');
+                                                        return false;
+                                                    }else{
+                                                        me.attr('src', "__PUBLIC__/Admin/img/true.png");
+                                                        me.attr('xs', '1');
+                                                    }
+                                                },'html');
+                                            }
+                                        })
+                                    })
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <include file="Public/footer"/>

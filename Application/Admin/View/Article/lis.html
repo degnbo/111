@@ -1,0 +1,398 @@
+<include file="Public/header"/>
+<script type="text/javascript" src="__PUBLIC__/colorpicker/colorpicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/zdy/Validform.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content mailbox-content">
+                            <div class="file-manager">
+                                <a class="btn btn-block btn-primary compose-mail" href="{:U('Article/all')}">全部列表页</a>
+                                <div class="space-25"></div>
+                                <!--<h5>文件夹</h5>
+                                <ul class="folder-list m-b-md" style="padding: 0">
+                                    <li>
+                                        <a href="mailbox.html"> <i class="fa fa-inbox "></i> 收件箱 <span class="label label-warning pull-right">16</span>
+                                        </a>
+                                    </li>
+                                </ul>-->
+                                <style>
+                                    .num{
+                                        padding:1px 1px;background:white;border:1px solid #ccc;
+                                        width:15px;height:5px;margin:12px;
+                                    }
+                                    .current{
+                                        padding:1px 1px;background:lightseagreen;
+                                        width:15px;height:5px;margin:2px;
+                                    }
+                                    .prev,.next{
+                                        padding:1px 1px;background:white;border:1px solid #ccc;
+                                        width:15px;height:5px;margin:2px;
+                                    }
+                                    .first,.end{
+                                        padding:1px 1px;background:white;border:1px solid #ccc;
+                                        width:15px;height:5px;margin:2px;
+                                    }
+                                </style>
+                                <foreach name="data" item="vc" key="k1">
+                                <h5>{$vc.tname}</h5>
+                                    <php>$g="p".$k1</php>
+                                <div class="dd" id="nestable{$k1+1}">
+                                    <ol class="dd-list">
+                                        <li class="dd-item" data-id="1">
+                                            <div class="dd-handle">
+                                                <span class="label label-info"><i class="fa fa-users"></i></span> {$vc.tname}
+                                            </div>
+                                            <style>
+                                                .dd-item a{
+                                                    color:#676A6C;
+                                                }
+                                            </style>
+                                            <ol class="dd-list" style="displaly:none">
+                                                <if condition="$k eq 0">
+                                                    <foreach name="vc.xq.data" item="vb">
+                                                        <li class="dd-item" data-id="4">
+                                                            <a href="{:U('Article/lis',array('id'=>$vb['id'],p=>I('get.p'),p1=>I('get.p1')))}"><span style="color:red">[{$vb.id}]:</span>
+                                                                <span><if condition="$vb.is_hot eq 1"><img src="__PUBLIC__/Admin/img/img83.jpg" /></if></span>
+                                                                <!--<span><if condition="$vb.is_hot eq 1"><img src="__PUBLIC__/Admin/img/zr.jpg" /></if></span>-->
+                                                                <span style="color:{$vb.colorval};font-weight:{$vb.boldval}">{$vb.title}</span>
+                                                            </a>
+                                                            <span style="color:#1AB394" onclick="del_li(this,{$vb.id})">[删除]</span>
+                                                        </li>
+                                                    </foreach>
+                                                    <li style="margin-left: -30px">{$vc.xq.page}</li>
+                                                    <else />
+                                                    <foreach name="vc.xq.data" item="vb">
+                                                        <li class="dd-item" data-id="4">
+                                                            <a href="{:U('Article/lis',array('id'=>$vb['id'],p=>I('get.p'),p1=>I('get.p1')))}"><span style="color:red">[{$vb.id}]:</span>
+                                                                <span><if condition="$vb.is_hot eq 1"><img src="__PUBLIC__/Admin/img/img83.jpg" /></if></span>
+                                                                <!--<span><if condition="$vb.is_hot eq 1"><img src="__PUBLIC__/Admin/img/zr.jpg" /></if></span>-->
+                                                                <span style="color:{$vb.colorval};font-weight:{$vb.boldval}">{$vb.title}</span>
+                                                            </a>
+                                                            <span style="color:#1AB394" onclick="del_li(this,{$vb.id})">[删除]</span>
+                                                        </li>
+                                                    </foreach>
+                                                    <li style="margin-left: -30px">{$vc.xq.page}</li>
+                                                </if>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </div>
+                                </foreach>
+                                <script>
+                                    function del_li(obj,id){
+                                        if(confirm('你确定要删除')){
+                                            $.ajax({
+                                                url:"{:U('Article/ajax_remove_sj')}",
+                                                data:{id:id},
+                                                type:'post',
+                                                dataType:'json',
+                                                succcess:function(e){
+                                                    if(e){
+                                                        alert(e.message);
+                                                        $(obj).parent().remove();
+                                                    }else{
+                                                        alert(e.message);
+                                                    }
+                                                }
+                                            })
+                                        }else{
+                                            return false;
+                                        }
+                                    }
+                                </script>
+
+                                <!-- Nestable List -->
+
+                                <script>
+                                    $(document).ready(function () {
+                                        var zs=parseInt("{$zs}");
+
+
+                                        var updateOutput = function (e) {
+                                            var list = e.length ? e : $(e.target),
+                                                    output = list.data('output');
+                                            if (window.JSON) {
+                                                output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
+                                            } else {
+                                                output.val('浏览器不支持');
+                                            }
+                                        };
+                                        // activate Nestable for list 2
+                                        for(var i=0;i<zs;i++){
+                                            $('#nestable'+(i+1)).nestable({
+                                                group: 1
+                                            }).on('change', updateOutput);
+                                            // output initial serialised data
+                                            updateOutput($('#nestable'+(i+1)).data('output', $('#nestable'+(i+1)+'-output')));
+                                        }
+                                        $('#nestable-menu').on('click', function (e) {
+                                            var target = $(e.target),
+                                                    action = target.data('action');
+                                            if (action === 'expand-all') {
+                                                $('.dd').nestable('expandAll');
+                                            }
+                                            if (action === 'collapse-all') {
+                                                $('.dd').nestable('collapseAll');
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <!--<h5 class="tag-title">标签</h5>
+                                <ul class="tag-list" style="padding: 0">
+                                    <li><a href="mail_compose.html"><i class="fa fa-tag"></i> 朋友</a>
+                                    </li>
+                                </ul>-->
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 animated fadeInRight">
+                    <div class="mail-box-header">
+                        <div class="pull-right tooltip-demo">
+                            <a href="{:U('Article/lis')}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="发布文章">发布文章</a>
+                        </div>
+                        <h2>
+                            文章列表
+                        </h2>
+                        <div class="mail-tools tooltip-demo m-t-md">
+
+
+                            <h3>
+                                <span class="font-noraml">详细： </span>文章编辑和添加
+                            </h3>
+                            <h5>
+                                <span class="pull-right font-noraml">当前时间：{:date("Y年m月d日")}{:get_sxtime(time())}({:get_xqtime(time())})</span>
+                                <span class="font-noraml">编写人： </span>by@mrbo
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="mail-box">
+                        <div class="mail-body">
+                            <form role="form" id="form" action="{:U('Article/lis',array('id'=>I('get.id'),'p'=>I('get.p'),'p1'=>I('get.p1')))}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="model_name" value="Article"/>
+                                <div class="form-group">
+                                    <label>文章类型</label>
+                                    <select name="type_id" datatype="*" nullmsg="请选择文章类型" class="form-control" >
+                                        <option value="">请选择文章分类</option>
+                                        <foreach name="tlist" item="va">
+                                            <option value="{$va.id}" <if condition="$va.id eq $vo['type_id']">selected</if>>{$va.tname}</option>
+                                        </foreach>
+                                    </select>
+                                    <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>课程类型</label>
+                                    <select name="cid" datatype="*" nullmsg="请选择子分类课程" class="form-control" >
+                                        <option value="">请选择课程类型</option>
+                                        <foreach name="clist" item="val">
+                                            <option <if condition="$val['pid'] eq 0">value=''<else/>value={$val.id}</if> <if condition="$vo.cid eq $val['id']">selected</if> >
+                                            {$val.level|str_repeat="&nbsp;&nbsp;",###}{$val.tname}</option>
+                                        </foreach>
+                                    </select>
+                                    <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>标题</label>
+                                    <input type="text" name="title" id="title" datatype="*1-50" class="form-control"
+                                           value="{$vo.title}" style="color:{$vo['colorval']};font-weight:{$vo['boldval']}"
+                                           nullmsg="请输入标题" errormsg="长度不能超过50"
+                                           placeholder="请输入标题名称"/>
+                                    <span onclick="colorpicker('colorpanel','colorval','title');" class="color" title="标题颜色"style="position:relative;left:490px;top:-25px"><img src="__PUBLIC__/colorpicker/colorBg.png" /></span>
+                                    <span id="colorpanel"style="position:relative;left:560px;top:-25px"></span>
+                                    <span onclick="blodpicker('boldval','title');" class="blod" title="标题加粗" style="position:relative;left:500px;top:-25px"><img src="__PUBLIC__/colorpicker/boldBg.png" /></span>
+                                    <span onclick="clearpicker()" class="clear" title="清除属性" style="position:relative;left:540px;top:-43px;color:green">[#]</span>
+                                    <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                                </div>
+                                <input type="hidden" name="colorval" id="colorval" value="{$vo['colorval']}" />
+                                <input type="hidden" name="boldval" id="boldval" value="{$vo['boldval']}" />
+                                <div class="form-group">
+                                    <label>标题别名</label>
+                                    <input type="text" name="alias" value="{$vo.alias}"
+                                           nullmsg="请输入标题别名" errormsg="长度不能超过30"
+                                           placeholder="请输入标题别名" class="form-control">
+                                    <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>logo图标</label>
+                                    <input type="text" name="logo"  class="form-control" id="logo" value="{$vo.logo}"/>
+                                    <input type="button" id="filemanager" value="选择文件" />
+                                    <div <if condition="$vo.logo neq ''">style="display:block"<else/>style="display:none"</if> id="cj">
+                                    <img src="{$vo.logo}" id="cjsc" width="200px" height="80px"/>
+                                    <input type="button"  value="删除" <if condition="$vo.id neq ''">onclick="removesrc(this,{$vo.id})"<else />onclick="removesrc(this,'')"</if>/>
+                                </div>
+                                <link rel="stylesheet" href="__PUBLIC__/kindeditor/themes/default/default.css" />
+                                <script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+                                <script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+                                <script>
+                                    KindEditor.ready(function(K) {
+                                        var editor = K.editor({
+                                            allowFileManager : true,
+                                            uploadJson:"{:U('Member/uploadfile')}",
+                                            fileManagerJson :"__PUBLIC__/kindeditor/php/file_manager_json1.php"
+                                        });
+                                        K('#filemanager').click(function() {
+                                            editor.loadPlugin('image', function() {
+                                                editor.plugin.imageDialog({
+                                                    //showLocal : false,
+                                                    //showRemote:false,
+                                                    //imageUrl : K('#url2').val(),
+                                                    clickFn : function(url, title, width, height, border, align) {
+                                                        K('#logo').val(url);
+                                                        K('#cj').show();
+                                                        K('#cjsc').attr('src',url);
+                                                        editor.hideDialog();
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    });
+                                    //websocket聊天室
+                                </script>
+                                <script>
+                                    function removesrc(obj,id){
+                                        var url="{:U('Article/ajax_remove')}";
+                                        var lj=$(obj).prev().attr('src');
+                                        $.post(url,{lj:lj,id:id},function(e){
+                                            $(obj).parent().hide();
+                                            $('#logo').val('');
+                                        })
+                                    }
+                                </script>
+                        </div>
+                        <div class="form-group">
+                            <label>图片宽度(表示生成缩略图的宽度和高度，一般不用填)</label>
+                            <input type="text" name="width" <if condition="$vo.width ">value={$vo.width}</if>
+                            placeholder="请输入图片宽度" class="form-control">
+                            <label>图片高度(表示生成缩略图的宽度和高度，一般不用填)</label>
+                            <input type="text" name="height" <if condition="$vo.height ">value={$vo.height}</if>
+                            placeholder="请输入图片高度" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>关键字</label>
+                            <input type="text" name="keywords"
+                                   nullmsg="请输入关键字" errormsg="长度不能超过30"
+                                   placeholder="请输入关键字" class="form-control">
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>作者</label>
+                            <input type="text" name="author"  value="{$vo.author}"
+                                   nullmsg="请输入作者" errormsg="长度不能超过20"
+                                   placeholder="请输入作者" class="form-control" value="author">
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>点击量</label>
+                            <input type="text" name="hits"  value="{$vo.hits}"
+                                   nullmsg="请输入点击量" errormsg="长度不能超过20"
+                                   placeholder="请输入点击量" class="form-control" value="hits">
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>描述</label>
+                            <textarea name="des" name="des" id="des" rows="10" cols="50"
+                                      nullmsg="请输入描述" errormsg="长度不能超过30"
+                                      placeholder="请输入描述" class="form-control">{$vo.des}</textarea>
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>发布时间</label>
+                            <input type="text" name="uptime" id="demo"  <if condition="$vo.uptime neq ''">value="{$vo.uptime|date='Y-m-d h:i:s',###}"</if>
+                                   placeholder="请输入发布时间"  class="laydate-icon">
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <script>
+                            ;!function(){
+                                laydate.skin('molv');
+                                laydate({
+                                    elem: '#demo',
+                                    istime:true,
+                                    format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
+                                    /*festival: true, //显示节日
+                                     choose: function(datas){ //选择日期完毕的回调
+                                     alert('得到：'+datas);
+                                     }*/
+                                });
+                            }();
+                        </script>
+                        <div class="form-group">
+                            <label>是否推荐</label><br>
+                            <input type="radio" name="is_rec" value="1" datatype="*" nullmsg="请选择" <if condition='$vo.is_rec eq 1'>checked</if>>是
+                            <input type="radio" name="is_rec"   value="2" <if condition='$vo.is_rec eq 2'>checked</if>>否
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>是否显示</label><br>
+                            <input type="radio" name="is_show" value="1" datatype="*" nullmsg="请选择" <if condition='$vo.is_show eq 1'>checked</if>>是
+                            <input type="radio" name="is_show"   value="2" <if condition='$vo.is_show eq 2'>checked</if>>否
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>是否最热</label><br>
+                            <input type="radio" name="is_hot" value="1" datatype="*" nullmsg="请选择" <if condition='$vo.is_hot eq 1'>checked</if>>是
+                            <input type="radio" name="is_hot"   value="2" <if condition='$vo.is_hot eq 2'>checked</if>>否
+                            <div class="error" style="position:relative;left:485px;top:-25px"></div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label>文章排序</label>
+                            <input type="text" name="sort_num"
+                                   datatype="n" readonly
+                                   nullmsg="请输入排序数字" value="{$vo.id}"
+                                   placeholder="请输入排序数字" class="form-control">
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>会员描述</label><br>
+                            <textarea name="content"  id="content">{:html_entity_decode($vo['content'])}</textarea>
+
+                            <div class="error" style="position:relative;left:365px;top:-25px"></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong>
+                            </button>
+                        </div>
+                        </form>
+                        <script>
+                            $("#form").Validform({
+                                tiptype:function(msg,o,cssctl) {
+                                    if (!o.obj.is("form")) {
+                                        var objtip = o.obj.siblings('div.error');
+                                        cssctl(objtip, o.type);
+                                        objtip.text(msg);
+                                    }
+                                }
+                            })
+                        </script>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+<include file="Public/footer"/>
+
+<!--引入UMeditor编辑器-->
+<link href="__PUBLIC__/umeditor1_2_2-utf8-php/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/umeditor1_2_2-utf8-php/umeditor.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/umeditor1_2_2-utf8-php/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    UM.getEditor("content", {
+        initialFrameWidth : "120%",
+        initialFrameHeight : "500",
+    });
+    /*UM.getEditor("des", {
+        initialFrameWidth : "120%",
+        initialFrameHeight : "200",
+        toolbar:[
+            'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat | emotion'
+        ]
+    });*/
+</script>
+<script src="__PUBLIC__/Admin/js/plugins/nestable/jquery.nestable.js"></script>
