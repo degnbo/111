@@ -1,0 +1,66 @@
+<include file="Public/header"/>
+<script type="text/javascript" src="__PUBLIC__/dtupload/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/dtupload/js/swfupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/dtupload/js/handlers.js"></script>
+<link href="__PUBLIC__/dtupload/css/default.css" rel="stylesheet" type="text/css" />
+<div class="zhuce1">
+	<div class="contian">
+        <form action="{:U('sc')}" method="post" id="form">
+            <div style="width: 610px; height: auto; border: 1px solid #e1e1e1; font-size: 12px; padding: 10px;">
+                <span id="spanButtonPlaceholder"></span>
+                <div id="divFileProgressContainer"></div>
+                <div id="thumbnails">
+                    <ul id="pic_list" style="margin: 5px;"></ul>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+            模块名称:<input type="text" name="banner_name" />
+            <input type="hidden" name="url" id="" value=""/>
+            <input type="submit" value="提交" onclick="return check()"/>
+        </form>
+        <script>
+            function check(){
+                if(!$("input[name='banner_name']").val()){
+                    alert('模块名称不能为空');
+                    return false;
+                }
+            }
+        </script>
+   </div>
+</div>
+<script type="text/javascript">
+    var swfu;
+    window.onload = function () {
+        swfu = new SWFUpload({
+            //upload_url: "__URL__/uploadImg",
+            upload_url: "{:U('Banner/upload')}",
+            post_params: {"PHPSESSID": "<?php echo session_id();?>"},
+            file_size_limit : "2 MB",
+            file_types : "*.jpg;*.png;*.gif;*.bmp",
+            file_types_description : "JPG Images",
+            file_upload_limit : "100",
+            file_queue_error_handler : fileQueueError,
+            file_dialog_complete_handler : fileDialogComplete,
+            upload_progress_handler : uploadProgress,
+            upload_error_handler : uploadError,
+            upload_success_handler : uploadSuccess,
+            upload_complete_handler : uploadComplete,
+            button_image_url : "__PUBLIC__/dtupload/images/upload.png",
+            button_placeholder_id : "spanButtonPlaceholder",
+            button_width: 113,
+            button_height: 33,
+            button_text : '',
+            button_text_style : '.spanButtonPlaceholder { font-family: Helvetica, Arial, sans-serif; font-size: 14pt;} ',
+            button_text_top_padding: 0,
+            button_text_left_padding: 0,
+            button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+            button_cursor: SWFUpload.CURSOR.HAND,
+            flash_url : "__PUBLIC__/dtupload/swf/swfupload.swf",
+            custom_settings : {
+                upload_target : "divFileProgressContainer"
+            },
+            debug: false
+        });
+    };
+</script>
+<include file="Public/footer"/>
